@@ -30,8 +30,6 @@ robotsNoIndex = true
 [cascade.sitemap]
 disable = true
 
-[cascade.build]
-list = 'local'
 +++
 
 A quiet shared place.

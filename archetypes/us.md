@@ -17,7 +17,5 @@ robotsNoIndex = true
 [sitemap]
 disable = true
 
-[build]
-list = 'local'
 +++
 
