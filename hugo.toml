@@ -1,6 +1,7 @@
-baseURL = 'https://OstensibleParadox.github.io/'
+baseURL = 'https://ostensibleparadox.pages.dev/'
 title = 'My Hugo Project'
 theme = 'PaperMod'
+timezone = 'UTC'
 
 defaultContentLanguage = 'zh'
 defaultContentLanguageInSubdir = true
@@ -10,16 +11,65 @@ defaultContentLanguageInSubdir = true
   section = ["HTML", "RSS"]
   page = ["HTML"]
 
-[outputs.zh]
-  home = ["HTML", "RSS", "JSON"]
+[permalinks]
+  [permalinks.page]
+    us = '/us/:slug/'
 
-[outputs.en]
-  home = ["HTML", "RSS", "JSON"]
+  [permalinks.section]
+    us = '/us/'
+
+[module]
+  [[module.mounts]]
+    source = 'content/us'
+    target = 'content/us'
+    [module.mounts.sites]
+      [module.mounts.sites.matrix]
+        languages = ['zh']
+
+  [[module.mounts]]
+    source = 'content/Chinese'
+    target = 'content'
+    [module.mounts.sites]
+      [module.mounts.sites.matrix]
+        languages = ['zh']
+
+  [[module.mounts]]
+    source = 'content/English'
+    target = 'content'
+    [module.mounts.sites]
+      [module.mounts.sites.matrix]
+        languages = ['en']
+
+  [[module.mounts]]
+    source = 'data'
+    target = 'data'
+
+  [[module.mounts]]
+    source = 'layouts'
+    target = 'layouts'
+
+  [[module.mounts]]
+    source = 'i18n'
+    target = 'i18n'
+
+  [[module.mounts]]
+    source = 'archetypes'
+    target = 'archetypes'
+
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+
+  [[module.mounts]]
+    source = 'static'
+    target = 'static'
 
 [params]
   env = "production"
+  mainSections = ["posts"]
   defaultTheme = "auto"
   ShowThemeToggleButton = true
+  DateFormat = "Monday, 15:04, 2006-01-02"
   ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = true
@@ -85,9 +135,8 @@ defaultContentLanguageInSubdir = true
 
 [languages]
   [languages.zh]
-    contentDir = 'content/Chinese'
-    languageName = '中文'
-    languageCode = 'zh-cn'
+    label = '中文'
+    locale = 'zh-cn'
     weight = 1
 
     [[languages.zh.menu.main]]
@@ -109,15 +158,20 @@ defaultContentLanguageInSubdir = true
       weight = 20
 
     [[languages.zh.menu.main]]
+      identifier = "us"
+      name = "小露的树屋"
+      url = "https://ostensibleparadox.pages.dev/us/"
+      weight = 25
+
+    [[languages.zh.menu.main]]
       identifier = "about"
       name = "关于"
       url = "/about/"
       weight = 30
 
   [languages.en]
-    contentDir = 'content/English'
-    languageName = 'English'
-    languageCode = 'en-us'
+    label = 'English'
+    locale = 'en-us'
     weight = 2
 
     [[languages.en.menu.main]]
@@ -137,6 +191,12 @@ defaultContentLanguageInSubdir = true
       name = "Posts"
       url = "/posts/"
       weight = 20
+
+    [[languages.en.menu.main]]
+      identifier = "us"
+      name = "Us"
+      url = "https://ostensibleparadox.pages.dev/us/"
+      weight = 25
 
     [[languages.en.menu.main]]
       identifier = "about"
