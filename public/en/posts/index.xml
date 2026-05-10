@@ -28,9 +28,11 @@
       <guid>http://localhost:1313/en/posts/essay1/</guid>
       <description>&lt;p&gt;Hello everyone, this is my first English essay post.&lt;/p&gt;
 &lt;p&gt;This is a sample article to test English content display.&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;Sample Image&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/images/essay1/sample-image.jpeg&#34;&gt;&lt;/p&gt;
 &lt;p&gt;2026-05-10&lt;/p&gt;</description>
       <content:encoded><![CDATA[<p>Hello everyone, this is my first English essay post.</p>
 <p>This is a sample article to test English content display.</p>
+<p><img alt="Sample Image" loading="lazy" src="/images/essay1/sample-image.jpeg"></p>
 <p>2026-05-10</p>
 ]]></content:encoded>
     </item>
