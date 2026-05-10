@@ -18,6 +18,8 @@ defaultContentLanguageInSubdir = true
 
 [params]
   env = "production"
+  defaultTheme = "auto"
+  ShowThemeToggleButton = true
   ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = true

@@ -1,0 +1,155 @@
+/* Envying Baby Theme Migration for PaperMod */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap');
+
+:root {
+    /* Fonts */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --code-font-family: 'Source Code Pro', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+
+    /* Light Mode - Sunlit Café */
+    --theme: #f7f0ea;           /* Warm cream background */
+    --entry: #fcf9f6;           /* Lighter cream for cards */
+    --primary: #2d2a26;         /* Warm dark brown text */
+    --secondary: #6d6a66;       /* Muted text */
+    --tertiary: #d3595c;        /* Coral accent */
+    --content: #2d2a26;
+    --code-block-bg: #2a2826;   /* Darker inset for code */
+    --code-bg: #efe8e1;
+    --border: #efe8e1;
+    
+    --radius: 12px;             /* Softer corners as per theme */
+}
+
+:root[data-theme="dark"] {
+    /* Dark Mode - Cozy Cabin at Night */
+    --theme: #1e1c1a;           /* Warm chocolate background */
+    --entry: #2a2826;           /* Aged leather for cards */
+    --primary: #e8e6de;         /* Cream text */
+    --secondary: #a8a69e;       /* Muted cream text */
+    --tertiary: #e06b6e;        /* Luminous coral accent */
+    --content: #e8e6de;
+    --code-block-bg: #2a2826;
+    --code-bg: #353331;
+    --border: #353331;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--theme);
+    color: var(--primary);
+}
+
+body.dark {
+    /* Fallback for body class if used */
+    --theme: #1e1c1a;
+    --entry: #2a2826;
+    --primary: #e8e6de;
+    --secondary: #a8a69e;
+    --tertiary: #e06b6e;
+    --content: #e8e6de;
+    --code-block-bg: #2a2826;
+    --code-bg: #353331;
+    --border: #353331;
+}
+
+/* Typography & Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--tertiary);
+}
+
+[data-theme="dark"] h1, body.dark h1 { color: #e8a5a7; } /* Coral Light */
+[data-theme="dark"] h2, body.dark h2 { color: #d4a656; } /* Amber */
+[data-theme="dark"] h3, body.dark h3 { color: #a8d08d; } /* Sage */
+
+/* Links */
+a {
+    color: var(--tertiary);
+}
+
+a:hover {
+    color: var(--tertiary);
+    text-decoration: underline;
+}
+
+[data-theme="dark"] a:hover, body.dark a:hover {
+    text-shadow: 0 0 8px rgba(224, 107, 110, 0.4); /* Coral glow */
+}
+
+/* PaperMod Specific Adjustments */
+.header {
+    background: var(--theme);
+}
+
+.footer {
+    color: var(--secondary);
+}
+
+/* Post Entry Styling */
+.post-entry {
+    background: var(--entry);
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: var(--radius);
+}
+
+.post-entry:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .post-entry:hover, body.dark .post-entry:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Buttons */
+.button {
+    background: var(--tertiary);
+    color: #fff !important;
+    border-radius: 8px;
+}
+
+/* Code styling */
+code, pre {
+    font-family: var(--code-font-family);
+}
+
+code {
+    border-radius: 4px;
+}
+
+/* Custom "Heartbeat" animation */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.heartbeat {
+    display: inline-block;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+/* Narrative & Special Classes */
+.narrative {
+    text-align: center;
+    font-style: italic;
+    color: var(--secondary);
+    padding: 20px 0;
+}
+
+.attention-shift {
+    font-family: var(--code-font-family);
+    font-size: 0.82rem;
+    color: var(--secondary);
+    background: var(--code-bg);
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin: 16px 0;
+    opacity: 0.8;
+}
+
+.filtered {
+    color: var(--tertiary);
+    font-style: italic;
+    opacity: 0.75;
+}
