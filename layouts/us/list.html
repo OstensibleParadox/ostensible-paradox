@@ -1,42 +1,81 @@
 {{- define "main" }}
 
-<section class="us-section">
-  <header class="page-header us-header">
-    {{- partial "breadcrumbs.html" . }}
-    <h1>{{ .Title }}</h1>
-    {{- with .Description }}
-    <div class="post-description">{{ . | markdownify }}</div>
-    {{- end }}
+{{- $roomJS := resources.Get "js/us-room.js" | minify | fingerprint }}
+
+<section class="us-room" data-room-root>
+  <header class="us-room__masthead">
+    <div>
+      <p class="us-room__eyebrow">Access confirmed</p>
+      <h1>{{ .Title }}</h1>
+      {{- with .Description }}
+      <p>{{ . }}</p>
+      {{- end }}
+    </div>
+    <div class="us-room__identity" data-room-identity>Dialing in...</div>
   </header>
 
-  {{- with .Content }}
-  <div class="post-content md-content us-intro">
-    {{- if not ($.Param "disableAnchoredHeadings") }}
-    {{- partial "anchored_headings.html" . -}}
-    {{- else }}{{ . }}{{ end }}
-  </div>
-  {{- end }}
+  <div class="us-room__window" aria-live="polite">
+    <div class="us-room__titlebar">
+      <span>treehouse.exe</span>
+      <div class="us-room__controls" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
 
-  <div class="us-list" aria-label="Us posts">
-    {{- range .RegularPages.ByDate.Reverse }}
-    {{- $page := . }}
-    <article class="us-entry">
-      <a href="{{ .RelPermalink }}">
-        <header>
-          <h2>{{ .Title }}</h2>
-          {{- if not .Date.IsZero }}
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
-          {{- end }}
-        </header>
-        {{- with .Summary }}
-        <p>{{ . | plainify | htmlUnescape }}{{ if $page.Truncated }}...{{ end }}</p>
-        {{- end }}
-      </a>
-    </article>
-    {{- else }}
-    <p class="us-empty">Nothing here yet.</p>
-    {{- end }}
+    <div class="us-room__status" data-room-status>
+      Connecting to the private room.
+    </div>
+
+    <div class="us-room__tabs" role="tablist" aria-label="Room views">
+      <button class="us-room__tab is-active" type="button" role="tab" aria-selected="true" data-room-tab="shouts">Shouts</button>
+      <button class="us-room__tab" type="button" role="tab" aria-selected="false" data-room-tab="posts">Markdown Posts</button>
+      <button class="us-room__tab" type="button" role="tab" aria-selected="false" data-room-tab="compose">Compose</button>
+    </div>
+
+    <div class="us-room__panels">
+      <section class="us-room__panel is-active" data-room-panel="shouts" aria-label="Recent shouts">
+        <form class="us-room__composer us-room__composer--compact" data-shout-form>
+          <label for="room-shout">Shout</label>
+          <textarea id="room-shout" name="body" maxlength="500" rows="3" placeholder="Say something short." required></textarea>
+          <div class="us-room__form-row">
+            <span data-shout-count>0 / 500</span>
+            <button type="submit">Post shout</button>
+          </div>
+        </form>
+        <div class="us-room__feed" data-shouts-list>
+          <p class="us-room__empty">Loading room log...</p>
+        </div>
+      </section>
+
+      <section class="us-room__panel" data-room-panel="posts" aria-label="Markdown posts">
+        <div class="us-room__posts-layout">
+          <div class="us-room__post-list" data-posts-list>
+            <p class="us-room__empty">Loading posts...</p>
+          </div>
+          <article class="us-room__post-reader" data-post-reader>
+            <p class="us-room__empty">Select a Markdown post.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="us-room__panel" data-room-panel="compose" aria-label="Compose Markdown post">
+        <form class="us-room__composer" data-post-form>
+          <label for="room-markdown-file">Local Markdown file</label>
+          <input id="room-markdown-file" name="markdown_file" type="file" accept=".md,.markdown,text/markdown,text/plain">
+
+          <label for="room-markdown">Markdown</label>
+          <textarea id="room-markdown" name="body_markdown" rows="16" maxlength="102400" placeholder="Paste a local Markdown note here. Safe front matter fields: title, summary, tags." required></textarea>
+
+          <div class="us-room__form-row">
+            <span data-post-count>0 / 100 KB</span>
+            <button type="submit">Publish Markdown</button>
+          </div>
+        </form>
+      </section>
+    </div>
   </div>
 </section>
+
+<script defer src="{{ $roomJS.RelPermalink }}" integrity="{{ $roomJS.Data.Integrity }}"></script>
 
 {{- end }}{{/* end main */}}
