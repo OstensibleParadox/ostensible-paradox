@@ -14,15 +14,25 @@ export default {
       return env.ASSETS.fetch(request);
     }
 
-    try {
-      const user = await requireAccessUser(request, env);
-      await ensureDatabase(env);
-      return await handleApi(request, env, user, url);
-    } catch (error) {
-      return jsonError(error);
-    }
+    return handleRoomApi(request, env);
   }
 };
+
+export async function handleRoomApi(request, env) {
+  const url = new URL(request.url);
+
+  try {
+    if (!url.pathname.startsWith("/us/api/")) {
+      throw httpError(404, "Not found.");
+    }
+
+    const user = await requireAccessUser(request, env);
+    await ensureDatabase(env);
+    return await handleApi(request, env, user, url);
+  } catch (error) {
+    return jsonError(error);
+  }
+}
 
 async function handleApi(request, env, user, url) {
   const method = request.method.toUpperCase();

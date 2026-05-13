@@ -1,6 +1,6 @@
 # OstensibleParadox Hugo Blog
 
-这是一个使用 Hugo 和 PaperMod 主题搭建的双语个人博客，支持中文和英文内容。主站由 Cloudflare Workers 静态资产托管，旧 GitHub Pages 地址保留为跳转入口。
+这是一个使用 Hugo 和 PaperMod 主题搭建的双语个人博客，支持中文和英文内容。主站由 Cloudflare Pages 托管，并使用 Pages Functions 和 D1 提供受保护区域的动态接口；旧 GitHub Pages 地址保留为跳转入口。
 
 ## Quick Start
 
@@ -39,10 +39,11 @@ hugo --minify
 ├── assets/               # Hugo 管理的 CSS/JS 资源
 ├── static/               # 直接复制到 public/ 的静态文件
 ├── scripts/              # 内容处理脚本
+├── functions/            # Cloudflare Pages Functions 路由
 ├── migrations/           # Cloudflare D1 SQL 迁移
-├── src/                  # Cloudflare Worker 入口
+├── src/                  # 共享的 Pages Function/Worker API 代码
 ├── hugo.toml             # Hugo 配置
-├── wrangler.jsonc        # Cloudflare Workers/D1/静态资产配置
+├── wrangler.jsonc        # Cloudflare Pages Functions/D1 配置
 └── README.md
 ```
 
@@ -81,7 +82,7 @@ Hugo 构建时会将 `static/` 下的文件复制到 `public/`，因此 Markdown
 
 ## 私有区域
 
-`/us/` 是一个由 Cloudflare Access 保护的私有区域。静态入口由 Hugo 构建，动态数据由 Worker API 和 D1 提供。私有区域产生的内容不写入公开仓库，也不进入 Hugo 搜索、RSS 或 sitemap。
+`/us/` 是一个由 Cloudflare Access 保护的私有区域。静态入口由 Hugo 构建，动态数据由 Pages Functions 和 D1 提供。私有区域产生的内容不写入公开仓库，也不进入 Hugo 搜索、RSS 或 sitemap。
 
 ## 本地开发
 
@@ -93,10 +94,10 @@ hugo server -D
 
 访问 `http://localhost:1313` 预览站点。
 
-如需调试 Worker、静态资产绑定和 D1：
+如需调试 Pages Functions 和 D1：
 
 ```bash
-npx wrangler dev
+npx wrangler pages dev public
 ```
 
 ## 构建与部署
@@ -107,13 +108,13 @@ npx wrangler dev
 hugo --minify
 ```
 
-Cloudflare Workers 部署：
+Cloudflare Pages 会在 GitHub `main` 分支更新后自动运行 Hugo 构建并部署。手动部署当前 `public/` 输出目录：
 
 ```bash
-npx wrangler deploy
+npx wrangler pages deploy public --project-name ostensibleparadox-github-io
 ```
 
-`wrangler.jsonc` 会先运行 Hugo 构建，再把 `public/` 作为 Worker 静态资产上传。D1 schema 通过 `migrations/` 管理。
+`wrangler.jsonc` 为 Pages Functions 提供环境变量和 D1 绑定。D1 schema 通过 `migrations/` 管理。
 
 ## 双语配置
 
@@ -138,7 +139,7 @@ npx wrangler deploy
 2. `.wrangler/` 是本地 Wrangler 缓存，不提交到仓库。
 3. 公开文章使用 `content/Chinese/` 和 `content/English/`。
 4. 受保护区域的用户生成内容保存在 D1，不应写入公开 Markdown 内容目录。
-5. 修改 `wrangler.jsonc`、D1 迁移或 Worker API 后，应至少运行 `hugo --minify` 和 `npx wrangler deploy --dry-run` 验证。
+5. 修改 `wrangler.jsonc`、D1 迁移或 Pages Function API 后，应至少运行 `hugo --minify` 和 `npx wrangler pages dev public` 验证。
 
 ## 相关链接
 

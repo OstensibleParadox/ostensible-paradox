@@ -37,8 +37,14 @@
     }
 
     return fetch(path, init).then(function (response) {
+      var contentType = response.headers.get("content-type") || "";
       return response.text().then(function (text) {
-        var data = text ? JSON.parse(text) : {};
+        var data = {};
+        if (text && contentType.indexOf("application/json") !== -1) {
+          data = JSON.parse(text);
+        } else if (text) {
+          throw new Error("Room API returned HTML instead of JSON. The Pages Function for /us/api/* is not active yet.");
+        }
         if (!response.ok) {
           var message = data && data.error ? data.error : "Request failed.";
           throw new Error(message);
