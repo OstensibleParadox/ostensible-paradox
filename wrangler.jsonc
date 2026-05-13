@@ -1,16 +1,35 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "lucia-hugo",
+  "main": "src/index.js",
   "compatibility_date": "2026-05-13",
   "observability": {
     "enabled": true
   },
   "assets": {
     "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/us/api/*"
+    ],
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
   "build": {
     "command": "npx -y -p hugo-bin@0.147.0 hugo --minify"
-  }
+  },
+  "vars": {
+    "ACCESS_TEAM_DOMAIN": "https://ostensibleparadox.cloudflareaccess.com",
+    "ACCESS_AUD": "bb15661cba72af69bd446c32ce2f8ef220981e5e019fad427e5c1b853936081b",
+    "ROOM_OWNER_EMAILS": "",
+    "DEV_ROOM_EMAIL": ""
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "lucia-room",
+      "database_id": "50a86551-66a9-4343-9971-4fae7772bd9c",
+      "migrations_dir": "migrations"
+    }
+  ]
 }
