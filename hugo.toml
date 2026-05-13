@@ -22,23 +22,17 @@ defaultContentLanguageInSubdir = true
   [[module.mounts]]
     source = 'content/us'
     target = 'content/us'
-    [module.mounts.sites]
-      [module.mounts.sites.matrix]
-        languages = ['zh']
+    lang = 'zh'
 
   [[module.mounts]]
     source = 'content/Chinese'
     target = 'content'
-    [module.mounts.sites]
-      [module.mounts.sites.matrix]
-        languages = ['zh']
+    lang = 'zh'
 
   [[module.mounts]]
     source = 'content/English'
     target = 'content'
-    [module.mounts.sites]
-      [module.mounts.sites.matrix]
-        languages = ['en']
+    lang = 'en'
 
   [[module.mounts]]
     source = 'data'
