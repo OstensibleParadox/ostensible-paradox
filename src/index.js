@@ -1,7 +1,10 @@
 const MAX_SHOUT_CHARS = 500;
 const MAX_POST_BYTES = 100 * 1024;
+const MAX_IMAGE_BYTES = 5 * 1024 * 1024;
 const SHOUT_LIMIT = { windowSeconds: 10 * 60, count: 20 };
 const POST_LIMIT = { windowSeconds: 60 * 60, count: 12 };
+const IMAGE_LIMIT = { windowSeconds: 10 * 60, count: 10 };
+const ALLOWED_IMAGE_TYPES = new Set(["image/jpeg", "image/png", "image/gif", "image/webp", "image/svg+xml"]);
 
 let jwksCache = null;
 let schemaReady = null;
@@ -57,9 +60,18 @@ async function handleApi(request, env, user, url) {
     return createPost(request, env, user);
   }
 
+  if (method === "POST" && pathname === "/us/api/images") {
+    return uploadImage(request, env, user);
+  }
+
   const postMatch = pathname.match(/^\/us\/api\/posts\/([^/]+)$/);
   if (method === "GET" && postMatch) {
     return getPost(env, user, decodeURIComponent(postMatch[1]));
+  }
+
+  const imageMatch = pathname.match(/^\/us\/api\/images\/([^/]+)$/);
+  if (method === "GET" && imageMatch) {
+    return serveImage(env, decodeURIComponent(imageMatch[1]));
   }
 
   const deleteMatch = pathname.match(/^\/us\/api\/entries\/([^/]+)$/);
@@ -78,7 +90,7 @@ async function listEntries(env, user, url) {
 
   const limit = kind === "shout" ? 100 : 50;
   const result = await env.DB.prepare(
-    `SELECT id, slug, kind, title, summary, body_text, tags_json,
+    `SELECT id, slug, kind, title, summary, body_text, tags_json, image_key,
             author_email, author_handle, created_at, updated_at
        FROM room_entries
       WHERE kind = ? AND deleted_at IS NULL
@@ -94,10 +106,16 @@ async function listEntries(env, user, url) {
 async function createShout(request, env, user) {
   const input = await readJson(request);
   const body = normalizeText(input.body || input.body_text || "");
+  const imageKey = normalizeText(input.image_key || "");
 
   if (!body) throw httpError(400, "Shout cannot be empty.");
   if (body.length > MAX_SHOUT_CHARS) {
     throw httpError(400, `Shouts are limited to ${MAX_SHOUT_CHARS} characters.`);
+  }
+
+  if (imageKey && env.ROOM_IMAGES) {
+    const obj = await env.ROOM_IMAGES.head(imageKey);
+    if (!obj) throw httpError(400, "Referenced image was not found. Please upload the image first.");
   }
 
   await checkRateLimit(env, `shout:${user.email}`, SHOUT_LIMIT);
@@ -107,16 +125,17 @@ async function createShout(request, env, user) {
 
   await env.DB.prepare(
     `INSERT INTO room_entries (
-       id, slug, kind, title, summary, body_markdown, body_text, tags_json,
+       id, slug, kind, title, summary, body_markdown, body_text, tags_json, image_key,
        author_email, author_handle, created_at, updated_at
-     ) VALUES (?, NULL, 'shout', NULL, NULL, ?, ?, '[]', ?, ?, ?, ?)`
-  ).bind(id, body, body, user.email, user.handle, now, now).run();
+     ) VALUES (?, NULL, 'shout', NULL, NULL, ?, ?, '[]', ?, ?, ?, ?, ?)`
+  ).bind(id, body, body, imageKey || null, user.email, user.handle, now, now).run();
 
   return json({
     entry: {
       id,
       kind: "shout",
       body_text: body,
+      image_url: imageKey ? `/us/api/images/${imageKey}` : null,
       author_handle: user.handle,
       created_at: now,
       updated_at: now,
@@ -182,9 +201,91 @@ async function createPost(request, env, user) {
   }, { status: 201 });
 }
 
+async function uploadImage(request, env, user) {
+  if (!env.ROOM_IMAGES) {
+    throw httpError(503, "Image storage is not configured.");
+  }
+
+  const contentType = request.headers.get("content-type") || "";
+  if (!contentType.startsWith("multipart/form-data")) {
+    throw httpError(415, "Expected multipart/form-data.");
+  }
+
+  let formData;
+  try {
+    formData = await request.formData();
+  } catch (_error) {
+    throw httpError(400, "Invalid multipart form data.");
+  }
+
+  const file = formData.get("image");
+  if (!file || typeof file.name !== "string") {
+    throw httpError(400, "No image file provided in the 'image' field.");
+  }
+
+  if (!ALLOWED_IMAGE_TYPES.has(file.type)) {
+    throw httpError(400, "Image type must be JPEG, PNG, GIF, WebP, or SVG.");
+  }
+
+  if (file.size > MAX_IMAGE_BYTES) {
+    throw httpError(400, `Images are limited to ${Math.round(MAX_IMAGE_BYTES / 1024 / 1024)} MB.`);
+  }
+
+  await checkRateLimit(env, `image:${user.email}`, IMAGE_LIMIT);
+
+  const ext = extensionForMime(file.type);
+  const key = `${crypto.randomUUID()}.${ext}`;
+
+  await env.ROOM_IMAGES.put(key, file.stream(), {
+    httpMetadata: {
+      contentType: file.type,
+      cacheControl: "public, max-age=604800",
+      contentDisposition: "inline"
+    }
+  });
+
+  return json({
+    key,
+    url: `/us/api/images/${key}`
+  }, { status: 201 });
+}
+
+function extensionForMime(mime) {
+  const map = {
+    "image/jpeg": "jpg",
+    "image/png": "png",
+    "image/gif": "gif",
+    "image/webp": "webp",
+    "image/svg+xml": "svg"
+  };
+  return map[mime] || "bin";
+}
+
+async function serveImage(env, key) {
+  if (!env.ROOM_IMAGES) {
+    throw httpError(503, "Image storage is not configured.");
+  }
+
+  if (!/^[a-zA-Z0-9_.-]+$/.test(key)) {
+    throw httpError(400, "Invalid image key.");
+  }
+
+  const obj = await env.ROOM_IMAGES.get(key);
+  if (!obj) throw httpError(404, "Image not found.");
+
+  const headers = new Headers();
+  const httpMetadata = obj.httpMetadata || {};
+  if (httpMetadata.contentType) headers.set("content-type", httpMetadata.contentType);
+  if (httpMetadata.cacheControl) headers.set("cache-control", httpMetadata.cacheControl);
+  headers.set("referrer-policy", "no-referrer");
+  headers.set("cross-origin-resource-policy", "same-origin");
+
+  return new Response(obj.body, { headers });
+}
+
 async function getPost(env, user, slugOrId) {
   const entry = await env.DB.prepare(
-    `SELECT id, slug, kind, title, summary, body_markdown, body_text, tags_json,
+    `SELECT id, slug, kind, title, summary, body_markdown, body_text, tags_json, image_key,
             author_email, author_handle, created_at, updated_at
        FROM room_entries
       WHERE kind = 'post'
@@ -277,6 +378,14 @@ async function createSchema(db) {
       count INTEGER NOT NULL
     )`
   ).run();
+
+  try {
+    await db.prepare(
+      `ALTER TABLE room_entries ADD COLUMN image_key TEXT`
+    ).run();
+  } catch (_error) {
+    // Column already exists — safe to ignore.
+  }
 }
 
 async function checkRateLimit(env, keyPrefix, rule) {
@@ -469,6 +578,7 @@ function serializeEntry(entry, user, env) {
     title: entry.title || null,
     summary: entry.summary || null,
     body_text: entry.body_text || null,
+    image_url: entry.image_key ? `/us/api/images/${entry.image_key}` : null,
     tags: parseTagsJson(entry.tags_json),
     author_handle: entry.author_handle,
     created_at: entry.created_at,
@@ -609,8 +719,14 @@ function slugify(value) {
 }
 
 function renderMarkdown(markdown) {
-  const withoutImages = markdown.replace(/!\[[^\]]*]\([^)]+\)/g, "[image omitted]");
-  const lines = withoutImages.replace(/\r\n/g, "\n").split("\n");
+  const withSafeImages = markdown.replace(/!\[([^\]]*)]\(([^)]+)\)/g, (_match, alt, url) => {
+    if (url.startsWith("/us/api/images/")) {
+      const decoded = url.replace(/&amp;/g, "&");
+      return `<img src="${escapeAttribute(decoded)}" alt="${escapeHtml(alt || "")}" loading="lazy" referrerpolicy="no-referrer">`;
+    }
+    return "[image omitted]";
+  });
+  const lines = withSafeImages.replace(/\r\n/g, "\n").split("\n");
   const blocks = [];
   let paragraph = [];
   let list = [];

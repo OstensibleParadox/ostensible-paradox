@@ -16,5 +16,11 @@
       "database_id": "50a86551-66a9-4343-9971-4fae7772bd9c",
       "migrations_dir": "migrations"
     }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "ROOM_IMAGES",
+      "bucket_name": "lucia-room-images"
+    }
   ]
 }

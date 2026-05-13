@@ -16,6 +16,7 @@
   var shoutForm = root.querySelector("[data-shout-form]");
   var postForm = root.querySelector("[data-post-form]");
   var shoutInput = root.querySelector("#room-shout");
+  var shoutImageInput = root.querySelector("#room-shout-image");
   var postInput = root.querySelector("#room-markdown");
   var fileInput = root.querySelector("#room-markdown-file");
   var shoutCount = root.querySelector("[data-shout-count]");
@@ -23,6 +24,7 @@
   var shoutsList = root.querySelector("[data-shouts-list]");
   var postsList = root.querySelector("[data-posts-list]");
   var postReader = root.querySelector("[data-post-reader]");
+  var pendingImageKey = null;
 
   function setStatus(message, isError) {
     statusEl.textContent = message;
@@ -126,6 +128,17 @@
       var article = document.createElement("article");
       article.className = "us-room__shout";
       article.appendChild(renderEntryHead(entry));
+
+      if (entry.image_url) {
+        var img = document.createElement("img");
+        img.src = entry.image_url;
+        img.alt = entry.body_text || "";
+        img.className = "us-room__shout-image";
+        img.loading = "lazy";
+        img.referrerPolicy = "no-referrer";
+        article.appendChild(img);
+      }
+
       article.appendChild(textEl("p", "us-room__shout-body", entry.body_text || entry.body_markdown || ""));
       shoutsList.appendChild(article);
     });
@@ -244,6 +257,51 @@
   shoutInput.addEventListener("input", updateCounts);
   postInput.addEventListener("input", updateCounts);
 
+  shoutImageInput.addEventListener("change", function () {
+    var file = shoutImageInput.files && shoutImageInput.files[0];
+    if (!file) {
+      pendingImageKey = null;
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      setStatus("Image is over the 5 MB limit.", true);
+      shoutImageInput.value = "";
+      pendingImageKey = null;
+      return;
+    }
+
+    var formData = new FormData();
+    formData.append("image", file);
+    setStatus("Uploading image...");
+
+    fetch("/us/api/images", {
+      method: "POST",
+      body: formData
+    })
+      .then(function (response) {
+        return response.text().then(function (text) {
+          var data = {};
+          if (text && response.headers.get("content-type") && response.headers.get("content-type").indexOf("application/json") !== -1) {
+            data = JSON.parse(text);
+          }
+          if (!response.ok) {
+            throw new Error((data && data.error) ? data.error : "Image upload failed.");
+          }
+          return data;
+        });
+      })
+      .then(function (data) {
+        pendingImageKey = data.key;
+        setStatus("Image ready: " + (file.name || "attached"));
+      })
+      .catch(function (error) {
+        setStatus(error.message, true);
+        shoutImageInput.value = "";
+        pendingImageKey = null;
+      });
+  });
+
   fileInput.addEventListener("change", function () {
     var file = fileInput.files && fileInput.files[0];
     if (!file) return;
@@ -262,12 +320,17 @@
   shoutForm.addEventListener("submit", function (event) {
     event.preventDefault();
     setBusy(shoutForm, true);
+    var shoutBody = { body: shoutInput.value };
+    if (pendingImageKey) shoutBody.image_key = pendingImageKey;
+
     api("/us/api/shouts", {
       method: "POST",
-      body: JSON.stringify({ body: shoutInput.value })
+      body: JSON.stringify(shoutBody)
     })
       .then(function () {
         shoutInput.value = "";
+        shoutImageInput.value = "";
+        pendingImageKey = null;
         updateCounts();
         setStatus("Shout posted.");
         return refreshRoom();
