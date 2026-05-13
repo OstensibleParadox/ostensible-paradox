@@ -21,11 +21,11 @@ ShowPostNavLinks = false
 
 ## 目录
 
-- [第一部分：引言：人工智能治理中的判断力赤字](/zh/posts/waivers-of-agency/1-introduction/)
-- [第二部分：人工智能治理中的判断力鸿沟](/zh/posts/waivers-of-agency/2-judgment-gap/)
-- [第三部分：能动性放弃：当规则取代判断力](/zh/posts/waivers-of-agency/3-waivers-of-agency/)
-- [第四部分：刺破公司面纱作为制度性判断力](/zh/posts/waivers-of-agency/4-veil-piercing/)
-- [第五部分：规则、制度前提与结论](/zh/posts/waivers-of-agency/5-conclusion/)
+- [第一部分：引言：人工智能治理中的判断力赤字]({{< relref "/posts/waivers-of-agency/1-introduction" >}})
+- [第二部分：人工智能治理中的判断力鸿沟]({{< relref "/posts/waivers-of-agency/2-judgment-gap" >}})
+- [第三部分：能动性放弃：当规则取代判断力]({{< relref "/posts/waivers-of-agency/3-waivers-of-agency" >}})
+- [第四部分：刺破公司面纱作为制度性判断力]({{< relref "/posts/waivers-of-agency/4-veil-piercing" >}})
+- [第五部分：规则、制度前提与结论]({{< relref "/posts/waivers-of-agency/5-conclusion" >}})
 
 ## 术语对照表
 

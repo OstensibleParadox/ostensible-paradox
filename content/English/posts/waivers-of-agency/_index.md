@@ -21,8 +21,8 @@ AI governance; judgment; performative alignment; waivers of agency; veil-piercin
 
 ## Contents
 
-- [Introduction: The Judgment Deficit in AI Governance](/en/posts/waivers-of-agency/1-introduction/)
-- [The Judgment Gap in AI Governance](/en/posts/waivers-of-agency/2-judgment-gap/)
-- [Waivers of Agency: When Rules Replace Judgment](/en/posts/waivers-of-agency/3-waivers-of-agency/)
-- [Veil-Piercing as Institutional Judgment](/en/posts/waivers-of-agency/4-veil-piercing/)
-- [Rules Without Judgment and Conclusion](/en/posts/waivers-of-agency/5-conclusion/)
+- [Introduction: The Judgment Deficit in AI Governance]({{< relref "/posts/waivers-of-agency/1-introduction" >}})
+- [The Judgment Gap in AI Governance]({{< relref "/posts/waivers-of-agency/2-judgment-gap" >}})
+- [Waivers of Agency: When Rules Replace Judgment]({{< relref "/posts/waivers-of-agency/3-waivers-of-agency" >}})
+- [Veil-Piercing as Institutional Judgment]({{< relref "/posts/waivers-of-agency/4-veil-piercing" >}})
+- [Rules Without Judgment and Conclusion]({{< relref "/posts/waivers-of-agency/5-conclusion" >}})
