@@ -20,7 +20,7 @@
 {{- end }}
 
 {{- if .Params.venue -}}
-    {{- $scratch.Add "meta" (slice (printf "<span class='meta-venue'># %s</span>" .Params.venue))) }}
+    {{- $scratch.Add "meta" (slice (printf "<span class='meta-venue'># %s</span>" .Params.venue)) }}
 {{- end }}
 
 {{- if .Params.disciplines -}}
