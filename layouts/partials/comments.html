@@ -1,0 +1,129 @@
+{{- /* Comments widget — vanilla JS, zero dependencies */ -}}
+<section id="comments-section" aria-label="Comments">
+  <h2 id="comments-heading">Comments</h2>
+  <div id="comments-list"></div>
+  <div id="comments-status" class="comments-status" aria-live="polite"></div>
+  <form id="comments-form" class="comments-form" novalidate>
+    <h3>Leave a comment</h3>
+    <div class="comments-field">
+      <label for="comments-name">Name <span class="comments-optional">(optional)</span></label>
+      <input type="text" id="comments-name" name="author_name" maxlength="100" autocomplete="name" placeholder="Your name">
+    </div>
+    <div class="comments-field">
+      <label for="comments-email">Email <span class="comments-optional">(optional, never shown)</span></label>
+      <input type="email" id="comments-email" name="author_email" maxlength="254" autocomplete="email" placeholder="you@example.com">
+    </div>
+    <div class="comments-field">
+      <label for="comments-body">Comment <span class="comments-required">*</span></label>
+      <textarea id="comments-body" name="body" rows="4" maxlength="5000" required placeholder="Basic Markdown supported: **bold**, *italic*, [links](url), `code`, lists, blockquotes"></textarea>
+    </div>
+    <div style="position:absolute;left:-9999px" aria-hidden="true">
+      <input type="text" name="website" tabindex="-1" autocomplete="off">
+    </div>
+    <button type="submit" id="comments-submit">Post comment</button>
+  </form>
+</section>
+
+<script>
+(function () {
+  const section = document.getElementById("comments-section");
+  if (!section) return;
+
+  const page = location.pathname.replace(/\/+$/, "") + "/";
+  const list = document.getElementById("comments-list");
+  const status = document.getElementById("comments-status");
+  const form = document.getElementById("comments-form");
+  const submitBtn = document.getElementById("comments-submit");
+
+  function showStatus(msg, type) {
+    status.textContent = msg;
+    status.className = "comments-status comments-status-" + type;
+  }
+
+  function clearStatus() {
+    status.textContent = "";
+    status.className = "comments-status";
+  }
+
+  async function fetchComments() {
+    try {
+      const res = await fetch("/api/comments?page=" + encodeURIComponent(page));
+      if (!res.ok) throw new Error("Failed to load comments.");
+      const data = await res.json();
+      renderComments(data.comments || []);
+    } catch (err) {
+      list.innerHTML = '<p class="comments-error">Could not load comments.</p>';
+    }
+  }
+
+  function renderComments(comments) {
+    if (!comments.length) {
+      list.innerHTML = '<p class="comments-empty">No comments yet. Be the first.</p>';
+      return;
+    }
+    list.innerHTML = comments.map(function (c) {
+      var name = c.author_name ? escapeHtml(c.author_name) : "Anonymous";
+      var date = new Date(c.created_at);
+      var dateStr = date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
+        + " at " + date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+      return '<article class="comment">'
+        + '<div class="comment-meta"><span class="comment-author">' + name + '</span>'
+        + '<time class="comment-time" datetime="' + c.created_at + '">' + dateStr + '</time></div>'
+        + '<div class="comment-body">' + (c.body_html || "") + '</div>'
+        + '</article>';
+    }).join("");
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    clearStatus();
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Posting...";
+
+    var body = document.getElementById("comments-body").value.trim();
+    if (!body) {
+      showStatus("Please enter a comment.", "error");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Post comment";
+      return;
+    }
+
+    var payload = {
+      page: page,
+      body: body,
+      author_name: document.getElementById("comments-name").value.trim() || null,
+      author_email: document.getElementById("comments-email").value.trim() || null,
+      website: document.querySelector('input[name="website"]').value || ""
+    };
+
+    try {
+      var res = await fetch("/api/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) {
+        var errData = await res.json().catch(function () { return {}; });
+        throw new Error(errData.error || "Failed to post comment.");
+      }
+
+      form.reset();
+      await fetchComments();
+      showStatus("Comment posted!", "success");
+      setTimeout(clearStatus, 5000);
+    } catch (err) {
+      showStatus(err.message, "error");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Post comment";
+    }
+  });
+
+  fetchComments();
+})();
+</script>

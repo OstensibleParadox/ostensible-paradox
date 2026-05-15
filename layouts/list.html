@@ -36,6 +36,9 @@
   {{- partial "anchored_headings.html" .Content -}}
   {{- else }}{{ .Content }}{{ end }}
 </div>
+{{- if (.Param "comments") }}
+{{- partial "comments.html" . }}
+{{- end }}
 {{- end }}
 
 {{- $pages := union .RegularPages .Sections }}
