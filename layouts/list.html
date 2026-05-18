@@ -42,6 +42,13 @@
 {{- end }}
 
 {{- $pages := union .RegularPages .Sections }}
+{{- if eq .Kind "term" }}
+{{- $termPages := index site.Taxonomies .Data.Plural .Data.Term }}
+{{- $pages = slice }}
+{{- range $termPages }}
+{{- $pages = $pages | append .Page }}
+{{- end }}
+{{- end }}
 {{- $pages = sort $pages "Date" "desc" }}
 
 {{- if .IsHome }}
