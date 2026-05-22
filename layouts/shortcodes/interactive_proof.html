@@ -1,0 +1,421 @@
+{{- $css := resources.Get "css/interactive-proof.css" | minify | fingerprint -}}
+{{- $js := resources.Get "js/interactive-proof.js" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+<div id="interactive-proof-lab" class="interactive-proof-lab">
+  <!-- Title & Introduction Section -->
+  <div class="ipl-intro">
+    <div class="ipl-badge">
+      <svg class="ipl-icon" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      Causal Modeling Limit
+    </div>
+    <h2 class="ipl-title">Erbar-Maas Singular Intervention Theorem</h2>
+    <p class="ipl-subtitle">
+      Interactive theorem builder proving that Pearl’s discontinuous graph surgeries can be recovered exactly as the infinite-rate singular state perturbation of physical Continuous-Time Markov Chain (CTMC) models.
+    </p>
+  </div>
+
+  <!-- Main Flash-like Interface Core -->
+  <div class="ipl-grid">
+    
+    <!-- Left Column: CTMC Animation, Matrix Display, State Graphs -->
+    <div class="ipl-left-panel">
+      <!-- Stage Gridlines Background -->
+      <div class="ipl-panel-gridbg"></div>
+      
+      <!-- Header Info Banner -->
+      <div class="ipl-panel-header">
+        <span class="ipl-status-indicator">
+          <span class="ipl-pulse-dot"></span>
+          CTMC CAUSAL SIMULATOR 1.2
+        </span>
+        <span id="ipl-slide-number">SLIDE 1 / 7</span>
+      </div>
+
+      <!-- Active Theorem Vector Board Arena -->
+      <div class="ipl-board-arena">
+        
+        <!-- Finite Causal Graph Visualization (States A, B, C) -->
+        <div class="ipl-visualizer-row">
+          
+          <!-- Box A: The Visual Graph Map -->
+          <div id="causal-graph-map" class="ipl-graph-box">
+            <span class="ipl-box-label">Finite Causal State Network</span>
+            
+            <!-- Simulated Graph Workspace -->
+            <div class="ipl-graph-workspace">
+              
+              <!-- Causal Node A -->
+              <div class="ipl-node-container ipl-node-a" data-node="0">
+                <div class="ipl-node">A</div>
+                <span class="ipl-node-prob">0.650</span>
+              </div>
+
+              <!-- Causal Node B -->
+              <div class="ipl-node-container ipl-node-b" data-node="1">
+                <div class="ipl-node">B</div>
+                <span class="ipl-node-prob">0.250</span>
+              </div>
+
+              <!-- Causal Node C -->
+              <div class="ipl-node-container ipl-node-c" data-node="2">
+                <div class="ipl-node">C<span class="ipl-do-badge ipl-hidden" id="ipl-do-badge">DO</span></div>
+                <span class="ipl-node-prob">0.100</span>
+              </div>
+
+              <!-- Dynamic Causal Directional Lines / Flux Arrows -->
+              <svg class="ipl-graph-svg" viewBox="0 0 320 240">
+                <defs>
+                  <marker id="ipl-arrow-orange" viewBox="0 0 10 10" refX="24" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#d97706" />
+                  </marker>
+                  <marker id="ipl-arrow-blue" viewBox="0 0 10 10" refX="24" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 z" fill="#818cf8" />
+                  </marker>
+                </defs>
+
+                <!-- Transition lines will be queried/manipulated in JS -->
+                <!-- A to C -->
+                <line id="ipl-line-ac" x1="70" y1="170" x2="150" y2="70" stroke="#818cf8" stroke-width="2" marker-end="url(#ipl-arrow-blue)" class="ipl-transition-line" />
+                
+                <!-- B to C -->
+                <line id="ipl-line-bc" x1="250" y1="170" x2="170" y2="70" stroke="#818cf8" stroke-width="2" marker-end="url(#ipl-arrow-blue)" class="ipl-transition-line" />
+
+                <!-- A to B (Symmetric base connection) -->
+                <line id="ipl-line-ab" x1="100" y1="190" x2="220" y2="190" stroke="#818cf8" stroke-width="1.5" class="ipl-transition-line" />
+              </svg>
+
+            </div>
+
+            <!-- Legend Badge -->
+            <div id="ipl-legend-badge" class="ipl-legend-badge">
+              Standard reversible paths
+            </div>
+          </div>
+
+          <!-- Box B: Generator Matrix Q Heatmap Details -->
+          <div id="generator-heatmap-detail" class="ipl-matrix-box">
+            <div class="ipl-matrix-header">
+              <span class="ipl-box-label">Active Matrix Algebra</span>
+              <p id="ipl-matrix-name" class="ipl-matrix-name">REVERSIBLE GENERATOR Q</p>
+            </div>
+
+            <!-- Elegant Numerical Matrix Layout -->
+            <div class="ipl-matrix-grid" id="ipl-matrix-grid">
+              <!-- JS will fill this 3x3 grid -->
+            </div>
+
+            <!-- Physical Slider adjustments only when we are in singular perturbation steps -->
+            <div id="ipl-lambda-control" class="ipl-slider-container ipl-hidden">
+              <div class="ipl-slider-label-row">
+                <span>RESTORATIVE RATE λ (Forcing Power):</span>
+                <span id="ipl-lambda-value" class="ipl-value-highlight">λ = 5</span>
+              </div>
+              <input 
+                id="forcing-power-slider"
+                type="range"
+                min="1"
+                max="40"
+                step="1"
+                value="5"
+                class="ipl-range-slider"
+              />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Simulated Live Evolution Information Monitor -->
+        <div id="simulation-monitor" class="ipl-monitor-bar">
+          <div class="ipl-monitor-col">
+            <span class="ipl-monitor-label">Active Simulation Time t</span>
+            <div class="ipl-time-control">
+              <input 
+                id="simulation-time-slider"
+                type="range"
+                min="0.1"
+                max="5.0"
+                step="0.1"
+                value="1.0"
+                class="ipl-range-slider"
+              />
+              <span id="ipl-time-value" class="ipl-monitor-value-small">1.0s</span>
+            </div>
+          </div>
+
+          <div class="ipl-monitor-col border-left">
+            <span class="ipl-monitor-label">Information Entropy H(p|π)</span>
+            <span id="ipl-entropy-value" class="ipl-monitor-value value-emerald">
+              0.00000 nats
+            </span>
+          </div>
+
+          <div class="ipl-monitor-col border-left">
+            <span class="ipl-monitor-label">State-Space Mass</span>
+            <span id="ipl-mass-value" class="ipl-monitor-value value-indigo">
+              A: 65% • B: 25% • C: 10%
+            </span>
+          </div>
+        </div>
+
+        <!-- Slider Explanation Banner -->
+        <div class="ipl-explanation-banner">
+          <h3 id="ipl-step-title" class="ipl-step-title">Reversible CTMC & Causal State Space</h3>
+          <p id="ipl-step-explanation" class="ipl-step-explanation">We formulate our system on a finite state graph with generator Q. Reversibility (detailed balance with respect to stationary measure π) guarantees our chain lacks circulating currents, enabling a clean potential landscape.</p>
+        </div>
+
+      </div>
+
+      <!-- Scrubber Timeline & Player Control Rails -->
+      <div class="ipl-control-panel">
+        
+        <!-- Scrubber Progression dots -->
+        <div class="ipl-scrubber-row">
+          <span class="ipl-scrubber-limit-label">1. BASE STOCHASTICS</span>
+          <div class="ipl-scrubber-bar" id="ipl-scrubber-bar">
+            <!-- JS will inject dots/buttons here -->
+          </div>
+          <span class="ipl-scrubber-limit-label">7. CAUSAL LIMIT</span>
+        </div>
+
+        <div class="ipl-buttons-row">
+          
+          <!-- Media Buttons -->
+          <div class="ipl-media-controls">
+            <button id="btn-prev-step" class="ipl-btn-icon" title="Previous Slide" disabled>
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </button>
+
+            <button id="btn-autoplay-toggle" class="ipl-btn-text" title="Auto Play">
+              <!-- Play icon -->
+              <svg id="autoplay-play-icon" class="ipl-media-icon" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              <!-- Pause icon -->
+              <svg id="autoplay-pause-icon" class="ipl-media-icon ipl-hidden" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+              <span id="autoplay-btn-label">Auto-Play</span>
+            </button>
+
+            <button id="btn-next-step" class="ipl-btn-icon" title="Next Slide">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+
+            <button id="btn-reset-timeline" class="ipl-btn-icon" title="Reset Simulator Settings">
+              <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            </button>
+          </div>
+
+          <!-- Speed Controller (autoplay only) -->
+          <div id="ipl-speed-control" class="ipl-speed-control ipl-hidden">
+            <span>AUTOPLAY LAPSE:</span>
+            <input
+              id="autoplay-speed-slider"
+              type="range"
+              min="2000"
+              max="8000"
+              step="500"
+              value="3500"
+              class="ipl-range-slider-mini"
+            />
+            <span id="ipl-speed-value">3.5s</span>
+          </div>
+
+          <!-- Slide Scene Dropdown Quick-Jump -->
+          <div class="ipl-scene-jump">
+            <span>STAGE:</span>
+            <select id="scene-selection-dropdown" class="ipl-dropdown">
+              <!-- JS will fill this dropdown dynamically -->
+            </select>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Right Column: Theorems Context, Math Algebra Box, definitions -->
+    <div class="ipl-right-panel">
+      
+      <!-- Box 1: Supporting Theoretical Knowledge Base Card -->
+      <div id="theory-knowledge-card" class="ipl-card">
+        <h3 class="ipl-card-title">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          Dynamic Knowledge Base
+        </h3>
+        
+        <!-- Step specific tabs references -->
+        <div class="ipl-tab-row" id="ipl-concept-tabs">
+          <!-- JS will dynamically inject buttons for concepts -->
+        </div>
+
+        <!-- Supporting definition detail element -->
+        <div id="concept-details-container" class="ipl-concept-box">
+          <div id="concept-details-content">
+            <!-- JS will inject concept details -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Box 2: LaTeX Structural Equation Display panel -->
+      <div id="equation-display-container" class="ipl-card ipl-eq-card">
+        <div class="ipl-card-badge">Algebraic Proof Face</div>
+        <h4 class="ipl-card-sub-title">Active Mathematical Statement</h4>
+        
+        <div id="math-display" class="ipl-math-display">
+          <!-- JS will render formula with clickable highlights -->
+        </div>
+
+        <p class="ipl-help-text">
+          <svg viewBox="0 0 24 24" width="10" height="10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          Anchor nodes: click any <span class="ipl-underline-dashed">underlined algebraic sequence</span> above to toggle detailed tutoring.
+        </p>
+      </div>
+
+      <!-- Box 3: Logarithmic Mean Real-Time Calculator Widget -->
+      <div id="log-mean-calculator-widget" class="ipl-card">
+        <h4 class="ipl-card-title-small">
+          <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Erbar-Maas Edge Mobility Calculator
+        </h4>
+        <p class="ipl-widget-desc">
+          Continuous entropy trajectories evaluate edge weights using the Logarithmic Mean Λ(p_i, p_j). Compute live values between hypothetical state density distributions:
+        </p>
+        
+        <div class="ipl-calc-row">
+          <div class="ipl-calc-col">
+            <span class="ipl-calc-label">DENSITY P_A:</span>
+            <div class="ipl-calc-slider-wrapper">
+              <span class="ipl-calc-bound">0.05</span>
+              <input 
+                id="calc-slider-a"
+                type="range"
+                min="0.05"
+                max="0.95"
+                step="0.05"
+                value="0.65"
+                disabled
+                class="ipl-range-slider-mini"
+              />
+              <span class="ipl-calc-bound">0.95</span>
+            </div>
+            <div class="ipl-calc-display-box" id="calc-display-a">
+              p_A = 0.650
+            </div>
+          </div>
+
+          <div class="ipl-calc-divider">↔</div>
+
+          <div class="ipl-calc-col">
+            <span class="ipl-calc-label">DENSITY P_B:</span>
+            <div class="ipl-calc-slider-wrapper">
+              <span class="ipl-calc-bound">0.05</span>
+              <input 
+                id="calc-slider-b"
+                type="range"
+                min="0.05"
+                max="0.95"
+                step="0.05"
+                value="0.25"
+                disabled
+                class="ipl-range-slider-mini"
+              />
+              <span class="ipl-calc-bound">0.95</span>
+            </div>
+            <div class="ipl-calc-display-box" id="calc-display-b">
+              p_B = 0.250
+            </div>
+          </div>
+        </div>
+
+        <div class="ipl-calc-result-box">
+          <span class="ipl-calc-result-label">Λ(p_A, p_B) = </span>
+          <span id="ipl-calc-result-value" class="ipl-calc-result-value">0.417237</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Discussion Chatbot Q&A Drawer (appears dynamically upon click of highlights) -->
+  <div id="tutor-discussion-drawer" class="ipl-drawer ipl-hidden">
+    <!-- Left Column context overview -->
+    <div class="ipl-drawer-left">
+      <div class="ipl-drawer-meta-section">
+        <span class="ipl-drawer-eyebrow">Active Mathematical Factor</span>
+        <h3 id="ipl-drawer-factor-label" class="ipl-drawer-factor-title">Detailed Balance Equation</h3>
+        <div class="ipl-drawer-bar"></div>
+        <p class="ipl-drawer-role-row">
+          ALGEBRAIC ROLE: <span id="ipl-drawer-factor-role" class="value-orange-dark">Symmetric Energy Landscape</span>
+        </p>
+        <p id="ipl-drawer-factor-details" class="ipl-drawer-details">
+          Ensures that microscopic transitions are balanced in equilibrium. In physics, this equates to time-reversal symmetry.
+        </p>
+      </div>
+
+      <!-- Close Button -->
+      <button id="btn-close-highlight" class="ipl-btn-primary uppercase-tracking">
+        Clear Highlight
+      </button>
+    </div>
+
+    <!-- Right Chat Dialog pane -->
+    <div class="ipl-drawer-right">
+      <div class="ipl-drawer-right-header">
+        <h4 class="ipl-drawer-chat-title">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          Algebraic Tutor & Q&A Discussion
+        </h4>
+        <span class="ipl-drawer-chat-badge">VIRTUAL COACH</span>
+      </div>
+
+      <!-- Dynamic scrollable Chat history -->
+      <div id="comment-chat-history" class="ipl-chat-history">
+        <!-- JS will render chat messages here -->
+      </div>
+
+      <!-- Suggested pre-coded questions for high-speed discussion assistance -->
+      <div id="faq-shortcuts-area" class="ipl-faq-section">
+        <span class="ipl-faq-header">Direct Explanatory Inquiries:</span>
+        <div id="ipl-faq-list" class="ipl-faq-list">
+          <!-- JS will render FAQ shortcuts here -->
+        </div>
+      </div>
+
+      <!-- Chat send element for custom student inquiries -->
+      <form id="ipl-chat-form" class="ipl-chat-form">
+        <input
+          id="custom-math-query-input"
+          type="text"
+          placeholder="Ask a custom question regarding this theorem structure..."
+          class="ipl-chat-input"
+          autocomplete="off"
+        />
+        <button id="btn-submit-tutor" type="submit" class="ipl-btn-primary uppercase-tracking flex-center gap-1">
+          <svg viewBox="0 0 24 24" width="12" height="12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+          Send
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Standby notice explaining how to run highlighted discussions -->
+  <div id="standby-notice-container" class="ipl-standby-notice">
+    <div class="ipl-standby-left">
+      <div class="ipl-standby-icon-box">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="ipl-pulse-fast"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line></svg>
+      </div>
+      <div>
+        <h4 class="ipl-standby-title">Click Algebraic Statements to Discuss</h4>
+        <p class="ipl-standby-desc">
+          We have embedded active highlighted anchors inside the math formulations. Click any underlined statement in the active math block to open the interactive discussion tutor.
+        </p>
+      </div>
+    </div>
+    <button id="btn-discover-anchor" class="ipl-btn-primary uppercase-tracking flex-center gap-1">
+      <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+      Quick Demo Highlight
+    </button>
+  </div>
+
+</div>
+<script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
