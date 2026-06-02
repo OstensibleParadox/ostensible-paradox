@@ -15,13 +15,13 @@ defaultContentLanguageInSubdir = true
 
 [module]
   [[module.mounts]]
-    source = 'content/us'
-    target = 'content/us'
+    source = 'content/treehouse'
+    target = 'content/treehouse'
     lang = 'zh'
 
   [[module.mounts]]
-    source = 'content/us'
-    target = 'content/us'
+    source = 'content/treehouse'
+    target = 'content/treehouse'
     lang = 'en'
 
   [[module.mounts]]
@@ -178,7 +178,7 @@ defaultContentLanguageInSubdir = true
     [[languages.zh.menu.main]]
       identifier = "us"
       name = "小露的树屋"
-      url = "/us/"
+      url = "/treehouse/"
       weight = 25
 
     [[languages.zh.menu.main]]
@@ -237,7 +237,7 @@ defaultContentLanguageInSubdir = true
     [[languages.en.menu.main]]
       identifier = "us"
       name = "Lucia's Treehouse"
-      url = "/us/"
+      url = "/treehouse/"
       weight = 25
 
     [[languages.en.menu.main]]

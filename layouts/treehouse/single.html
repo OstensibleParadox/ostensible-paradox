@@ -1,11 +1,11 @@
 {{- define "main" }}
 
-<article class="post-single us-single">
+<article class="post-single treehouse-single">
   <header class="post-header">
     {{- partial "breadcrumbs.html" . }}
     <h1 class="post-title entry-hint-parent">{{ .Title }}</h1>
     {{- if or (not .Date.IsZero) .Description }}
-    <div class="post-meta us-meta">
+    <div class="post-meta treehouse-meta">
       {{- if not .Date.IsZero }}
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
       {{- end }}
@@ -24,8 +24,8 @@
   </div>
   {{- end }}
 
-  <footer class="post-footer us-footer">
-    <a class="us-back-link" href="{{ "/us/" | relURL }}">All notes</a>
+  <footer class="post-footer treehouse-footer">
+    <a class="treehouse-back-link" href="{{ "/treehouse/" | relURL }}">All notes</a>
   </footer>
 </article>
 

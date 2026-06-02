@@ -1,0 +1,82 @@
+{{- define "main" }}
+
+{{- $roomJS := resources.Get "js/treehouse-room.js" | minify | fingerprint }}
+
+<section class="treehouse-room" data-room-root>
+  <header class="treehouse-room__masthead">
+    <div>
+      <p class="treehouse-room__eyebrow">Access confirmed</p>
+      <h1>{{ .Title }}</h1>
+      {{- with .Description }}
+      <p>{{ . }}</p>
+      {{- end }}
+    </div>
+    <div class="treehouse-room__identity" data-room-identity>Dialing in...</div>
+  </header>
+
+  <div class="treehouse-room__window" aria-live="polite">
+    <div class="treehouse-room__titlebar">
+      <span>treehouse.exe</span>
+      <div class="treehouse-room__controls" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="treehouse-room__status" data-room-status>
+      Connecting to the private room.
+    </div>
+
+    <div class="treehouse-room__tabs" role="tablist" aria-label="Room views">
+      <button class="treehouse-room__tab is-active" type="button" role="tab" aria-selected="true" data-room-tab="shouts">Shouts</button>
+      <button class="treehouse-room__tab" type="button" role="tab" aria-selected="false" data-room-tab="posts">Markdown Posts</button>
+      <button class="treehouse-room__tab" type="button" role="tab" aria-selected="false" data-room-tab="compose">Compose</button>
+    </div>
+
+    <div class="treehouse-room__panels">
+      <section class="treehouse-room__panel is-active" data-room-panel="shouts" aria-label="Recent shouts">
+        <form class="treehouse-room__composer treehouse-room__composer--compact" data-shout-form>
+          <label for="room-shout">Shout</label>
+          <textarea id="room-shout" name="body" maxlength="500" rows="3" placeholder="Say something short." required></textarea>
+          <input id="room-shout-image" type="file" accept="image/*">
+          <div class="treehouse-room__form-row">
+            <span data-shout-count>0 / 500</span>
+            <button type="submit">Post shout</button>
+          </div>
+        </form>
+        <div class="treehouse-room__feed" data-shouts-list>
+          <p class="treehouse-room__empty">Loading room log...</p>
+        </div>
+      </section>
+
+      <section class="treehouse-room__panel" data-room-panel="posts" aria-label="Markdown posts">
+        <div class="treehouse-room__posts-layout">
+          <div class="treehouse-room__post-list" data-posts-list>
+            <p class="treehouse-room__empty">Loading posts...</p>
+          </div>
+          <article class="treehouse-room__post-reader" data-post-reader>
+            <p class="treehouse-room__empty">Select a Markdown post.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="treehouse-room__panel" data-room-panel="compose" aria-label="Compose Markdown post">
+        <form class="treehouse-room__composer" data-post-form>
+          <label for="room-markdown-file">Local Markdown file</label>
+          <input id="room-markdown-file" name="markdown_file" type="file" accept=".md,.markdown,text/markdown,text/plain">
+
+          <label for="room-markdown">Markdown</label>
+          <textarea id="room-markdown" name="body_markdown" rows="16" maxlength="102400" placeholder="Paste a local Markdown note here. Safe front matter fields: title, summary, tags." required></textarea>
+
+          <div class="treehouse-room__form-row">
+            <span data-post-count>0 / 100 KB</span>
+            <button type="submit">Publish Markdown</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</section>
+
+<script defer src="{{ $roomJS.RelPermalink }}" integrity="{{ $roomJS.Data.Integrity }}"></script>
+
+{{- end }}{{/* end main */}}

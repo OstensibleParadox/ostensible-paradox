@@ -1,6 +1,6 @@
 # ostensible-paradox
 
-A bilingual Hugo blog with a Cloudflare Access-gated private room (`/us/`) and a password-protected content area (`/private/`). Static public content, dynamic private content — separate places, separate rules.
+A bilingual Hugo blog with a Cloudflare Access-gated private room (`/treehouse/`) and a password-protected content area (`/private/`). Static public content, dynamic private content — separate places, separate rules.
 
 ## Architecture
 
@@ -10,7 +10,7 @@ A bilingual Hugo blog with a Cloudflare Access-gated private room (`/us/`) and a
          ┌──────────────┼──────────────┐
          ▼              ▼              ▼
     Hugo static     Pages Functions   D1 (SQLite)
-    public site     /us/api/*          room_entries
+    public site     /treehouse/api/*          room_entries
     (/zh/, /en/)    │                 room_rate_limits
                     │
          ┌──────────┴──────────┐
@@ -18,17 +18,17 @@ A bilingual Hugo blog with a Cloudflare Access-gated private room (`/us/`) and a
     Access JWT verification   R2 (images)
 ```
 
-| Layer | Public | Private (`/us/`) |
+| Layer | Public | Private (`/treehouse/`) |
 |---|---|---|
-| **Edge** | Cloudflare Pages serves static HTML | Cloudflare Access gates all `/us/*` routes |
-| **Static shell** | Hugo builds blog from `content/` | Hugo builds room UI shell from `layouts/us/` |
+| **Edge** | Cloudflare Pages serves static HTML | Cloudflare Access gates all `/treehouse/*` routes |
+| **Static shell** | Hugo builds blog from `content/` | Hugo builds room UI shell from `layouts/treehouse/` |
 | **API** | None | Pages Functions validate Access JWT, read/write D1 & R2 |
 | **Persistence** | Git-tracked Markdown | D1 + R2 — never committed |
 
 **Key design choices:**
 - D1 at the edge avoids cross-datacenter latency and separate connection pools.
 - JWT verification is belt-and-suspenders: Cloudflare Access validates at the network edge; Pages Functions re-validate independently before any data operation.
-- Private user-generated content (room posts, images) never enters git. The static shell stays static; content is fetched client-side from `/us/api/*`.
+- Private user-generated content (room posts, images) never enters git. The static shell stays static; content is fetched client-side from `/treehouse/api/*`.
 - A separate cookie-based password middleware (`functions/_middleware.js`) guards `/private/` paths for lower-friction access without requiring a full identity provider.
 
 ## Project Structure
@@ -43,7 +43,7 @@ A bilingual Hugo blog with a Cloudflare Access-gated private room (`/us/`) and a
 │   └── _default/         # ⬇️ see Agent Notes below
 ├── assets/
 │   ├── css/extended/     # custom.css (theme), us.css (Win98 room UI)
-│   └── js/us-room.js     # Zero-dependency SPA client for the private room
+│   └── js/treehouse-room.js     # Zero-dependency SPA client for the private room
 ├── static/               # Static files: _headers, _redirects, images/
 ├── scripts/              # paper-to-blog.sh — academic paper → Hugo branch bundles
 ├── functions/            # Pages Functions route handlers
@@ -106,7 +106,7 @@ What stays out of this repository:
 ### Content Organization
 
 - `content/Chinese/posts/` and `content/English/posts/` are mounted as separate language content roots via `hugo.toml` `module.mounts`.
-- `content/us/` is a special section gated by Cloudflare Access. Its `_index.md` uses `cascade` to hide all child pages from search, RSS, and sitemap.
+- `content/treehouse/` is a special section gated by Cloudflare Access. Its `_index.md` uses `cascade` to hide all child pages from search, RSS, and sitemap.
 - `us` archetype (`archetypes/us.md`) disables share buttons, reading time, word count, and TOC for private pages.
 
 ### Git Workflow

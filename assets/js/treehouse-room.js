@@ -45,7 +45,7 @@
         if (text && contentType.indexOf("application/json") !== -1) {
           data = JSON.parse(text);
         } else if (text) {
-          throw new Error("Room API returned HTML instead of JSON. The Pages Function for /us/api/* is not active yet.");
+          throw new Error("Room API returned HTML instead of JSON. The Pages Function for /treehouse/api/* is not active yet.");
         }
         if (!response.ok) {
           var message = data && data.error ? data.error : "Request failed.";
@@ -86,11 +86,11 @@
     if (!entry.can_delete) return null;
     var button = document.createElement("button");
     button.type = "button";
-    button.className = "us-room__delete";
+    button.className = "treehouse-room__delete";
     button.textContent = "Hide";
     button.addEventListener("click", function () {
       if (!window.confirm("Hide this entry from the room?")) return;
-      api("/us/api/entries/" + encodeURIComponent(entry.id), { method: "DELETE" })
+      api("/treehouse/api/entries/" + encodeURIComponent(entry.id), { method: "DELETE" })
         .then(function () {
           setStatus("Entry hidden.");
           return refreshRoom();
@@ -104,11 +104,11 @@
 
   function renderEntryHead(entry) {
     var head = document.createElement("div");
-    head.className = "us-room__entry-head";
-    head.appendChild(textEl("span", "us-room__author", entry.author_handle || "unknown"));
+    head.className = "treehouse-room__entry-head";
+    head.appendChild(textEl("span", "treehouse-room__author", entry.author_handle || "unknown"));
 
     var actions = document.createElement("span");
-    actions.className = "us-room__entry-actions";
+    actions.className = "treehouse-room__entry-actions";
     actions.appendChild(textEl("time", "", formatDate(entry.created_at)));
     var deleteButton = renderDeleteButton(entry);
     if (deleteButton) actions.appendChild(deleteButton);
@@ -120,26 +120,26 @@
   function renderShouts() {
     shoutsList.replaceChildren();
     if (!state.shouts.length) {
-      shoutsList.appendChild(textEl("p", "us-room__empty", "No shouts yet. Leave the first one."));
+      shoutsList.appendChild(textEl("p", "treehouse-room__empty", "No shouts yet. Leave the first one."));
       return;
     }
 
     state.shouts.forEach(function (entry) {
       var article = document.createElement("article");
-      article.className = "us-room__shout";
+      article.className = "treehouse-room__shout";
       article.appendChild(renderEntryHead(entry));
 
       if (entry.image_url) {
         var img = document.createElement("img");
         img.src = entry.image_url;
         img.alt = entry.body_text || "";
-        img.className = "us-room__shout-image";
+        img.className = "treehouse-room__shout-image";
         img.loading = "lazy";
         img.referrerPolicy = "no-referrer";
         article.appendChild(img);
       }
 
-      article.appendChild(textEl("p", "us-room__shout-body", entry.body_text || entry.body_markdown || ""));
+      article.appendChild(textEl("p", "treehouse-room__shout-body", entry.body_text || entry.body_markdown || ""));
       shoutsList.appendChild(article);
     });
   }
@@ -147,21 +147,21 @@
   function renderPosts() {
     postsList.replaceChildren();
     if (!state.posts.length) {
-      postsList.appendChild(textEl("p", "us-room__empty", "No Markdown posts yet."));
-      postReader.replaceChildren(textEl("p", "us-room__empty", "Select a Markdown post."));
+      postsList.appendChild(textEl("p", "treehouse-room__empty", "No Markdown posts yet."));
+      postReader.replaceChildren(textEl("p", "treehouse-room__empty", "Select a Markdown post."));
       return;
     }
 
     state.posts.forEach(function (entry) {
       var button = document.createElement("button");
       button.type = "button";
-      button.className = "us-room__post-item";
+      button.className = "treehouse-room__post-item";
       if (state.activePost && state.activePost.id === entry.id) {
         button.classList.add("is-active");
       }
 
-      button.appendChild(textEl("h3", "us-room__post-title", entry.title || "Untitled note"));
-      button.appendChild(textEl("p", "us-room__post-summary", entry.summary || formatDate(entry.created_at)));
+      button.appendChild(textEl("h3", "treehouse-room__post-title", entry.title || "Untitled note"));
+      button.appendChild(textEl("p", "treehouse-room__post-summary", entry.summary || formatDate(entry.created_at)));
       button.addEventListener("click", function () {
         loadPost(entry.slug || entry.id);
       });
@@ -174,9 +174,9 @@
     postReader.replaceChildren();
 
     var title = textEl("h2", "", post.title || "Untitled note");
-    var meta = textEl("p", "us-room__post-meta", (post.author_handle || "unknown") + " | " + formatDate(post.created_at));
+    var meta = textEl("p", "treehouse-room__post-meta", (post.author_handle || "unknown") + " | " + formatDate(post.created_at));
     var body = document.createElement("div");
-    body.className = "us-room__post-body";
+    body.className = "treehouse-room__post-body";
     body.innerHTML = post.body_html || "";
 
     postReader.appendChild(title);
@@ -195,7 +195,7 @@
 
   function loadPost(slugOrId) {
     setStatus("Loading Markdown post...");
-    return api("/us/api/posts/" + encodeURIComponent(slugOrId))
+    return api("/treehouse/api/posts/" + encodeURIComponent(slugOrId))
       .then(function (data) {
         renderPostReader(data.post);
         setStatus("Post loaded.");
@@ -207,8 +207,8 @@
 
   function refreshRoom() {
     return Promise.all([
-      api("/us/api/entries?kind=shout"),
-      api("/us/api/entries?kind=post")
+      api("/treehouse/api/entries?kind=shout"),
+      api("/treehouse/api/entries?kind=post")
     ]).then(function (results) {
       state.shouts = results[0].entries || [];
       state.posts = results[1].entries || [];
@@ -220,7 +220,7 @@
         });
         if (!stillPresent) {
           state.activePost = null;
-          postReader.replaceChildren(textEl("p", "us-room__empty", "Select a Markdown post."));
+          postReader.replaceChildren(textEl("p", "treehouse-room__empty", "Select a Markdown post."));
         }
       }
     });
@@ -275,7 +275,7 @@
     formData.append("image", file);
     setStatus("Uploading image...");
 
-    fetch("/us/api/images", {
+    fetch("/treehouse/api/images", {
       method: "POST",
       body: formData
     })
@@ -323,7 +323,7 @@
     var shoutBody = { body: shoutInput.value };
     if (pendingImageKey) shoutBody.image_key = pendingImageKey;
 
-    api("/us/api/shouts", {
+    api("/treehouse/api/shouts", {
       method: "POST",
       body: JSON.stringify(shoutBody)
     })
@@ -346,7 +346,7 @@
   postForm.addEventListener("submit", function (event) {
     event.preventDefault();
     setBusy(postForm, true);
-    api("/us/api/posts", {
+    api("/treehouse/api/posts", {
       method: "POST",
       body: JSON.stringify({ body_markdown: postInput.value })
     })
@@ -371,7 +371,7 @@
   });
 
   updateCounts();
-  api("/us/api/me")
+  api("/treehouse/api/me")
     .then(function (data) {
       state.me = data.user;
       identityEl.textContent = "signed in as " + (data.user.handle || data.user.email);

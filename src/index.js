@@ -13,7 +13,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
-    if (!url.pathname.startsWith("/us/api/")) {
+    if (!url.pathname.startsWith("/treehouse/api/")) {
       return env.ASSETS.fetch(request);
     }
 
@@ -25,7 +25,7 @@ export async function handleRoomApi(request, env) {
   const url = new URL(request.url);
 
   try {
-    if (!url.pathname.startsWith("/us/api/")) {
+    if (!url.pathname.startsWith("/treehouse/api/")) {
       throw httpError(404, "Not found.");
     }
 
@@ -41,26 +41,26 @@ async function handleApi(request, env, user, url) {
   const method = request.method.toUpperCase();
   const pathname = url.pathname.replace(/\/+$/, "");
 
-  if (method === "GET" && pathname === "/us/api/me") {
+  if (method === "GET" && pathname === "/treehouse/api/me") {
     return json({
       user: publicUser(user, env),
       permissions: { can_delete_all: isAdmin(user, env) }
     });
   }
 
-  if (method === "GET" && pathname === "/us/api/entries") {
+  if (method === "GET" && pathname === "/treehouse/api/entries") {
     return listEntries(env, user, url);
   }
 
-  if (method === "POST" && pathname === "/us/api/shouts") {
+  if (method === "POST" && pathname === "/treehouse/api/shouts") {
     return createShout(request, env, user);
   }
 
-  if (method === "POST" && pathname === "/us/api/posts") {
+  if (method === "POST" && pathname === "/treehouse/api/posts") {
     return createPost(request, env, user);
   }
 
-  if (method === "POST" && pathname === "/us/api/images") {
+  if (method === "POST" && pathname === "/treehouse/api/images") {
     return uploadImage(request, env, user);
   }
 
@@ -135,7 +135,7 @@ async function createShout(request, env, user) {
       id,
       kind: "shout",
       body_text: body,
-      image_url: imageKey ? `/us/api/images/${imageKey}` : null,
+      image_url: imageKey ? `/treehouse/api/images/${imageKey}` : null,
       author_handle: user.handle,
       created_at: now,
       updated_at: now,
@@ -246,7 +246,7 @@ async function uploadImage(request, env, user) {
 
   return json({
     key,
-    url: `/us/api/images/${key}`
+    url: `/treehouse/api/images/${key}`
   }, { status: 201 });
 }
 
@@ -578,7 +578,7 @@ function serializeEntry(entry, user, env) {
     title: entry.title || null,
     summary: entry.summary || null,
     body_text: entry.body_text || null,
-    image_url: entry.image_key ? `/us/api/images/${entry.image_key}` : null,
+    image_url: entry.image_key ? `/treehouse/api/images/${entry.image_key}` : null,
     tags: parseTagsJson(entry.tags_json),
     author_handle: entry.author_handle,
     created_at: entry.created_at,
@@ -720,7 +720,7 @@ function slugify(value) {
 
 function renderMarkdown(markdown) {
   const withSafeImages = markdown.replace(/!\[([^\]]*)]\(([^)]+)\)/g, (_match, alt, url) => {
-    if (url.startsWith("/us/api/images/")) {
+    if (url.startsWith("/treehouse/api/images/")) {
       const decoded = url.replace(/&amp;/g, "&");
       return `<img src="${escapeAttribute(decoded)}" alt="${escapeHtml(alt || "")}" loading="lazy" referrerpolicy="no-referrer">`;
     }

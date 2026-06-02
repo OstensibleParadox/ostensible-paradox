@@ -1,17 +1,17 @@
-.us-room {
+.treehouse-room {
   max-width: 1120px;
   margin: 0 auto 48px;
   color: #111;
   font-family: "MS Sans Serif", Tahoma, Verdana, Arial, sans-serif;
 }
 
-.us-room *,
-.us-room *::before,
-.us-room *::after {
+.treehouse-room *,
+.treehouse-room *::before,
+.treehouse-room *::after {
   box-sizing: border-box;
 }
 
-.us-room__masthead {
+.treehouse-room__masthead {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -24,7 +24,7 @@
   box-shadow: inset 2px 2px 0 #4f7dff, inset -2px -2px 0 #000040;
 }
 
-.us-room__masthead h1 {
+.treehouse-room__masthead h1 {
   margin: 0;
   color: #fff;
   font-size: 2rem;
@@ -32,20 +32,20 @@
   letter-spacing: 0;
 }
 
-.us-room__masthead p {
+.treehouse-room__masthead p {
   margin: 6px 0 0;
   color: #dfe7ff;
   font-size: 0.95rem;
 }
 
-.us-room__eyebrow {
+.treehouse-room__eyebrow {
   margin: 0 0 6px !important;
   color: #ffff99 !important;
   font-size: 0.8rem !important;
   text-transform: uppercase;
 }
 
-.us-room__identity {
+.treehouse-room__identity {
   flex: 0 0 auto;
   max-width: min(360px, 100%);
   padding: 7px 10px;
@@ -57,14 +57,14 @@
   overflow-wrap: anywhere;
 }
 
-.us-room__window {
+.treehouse-room__window {
   background: #c0c0c0;
   border: 2px solid;
   border-color: #fff #404040 #404040 #fff;
   box-shadow: 1px 1px 0 #000;
 }
 
-.us-room__titlebar {
+.treehouse-room__titlebar {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -75,12 +75,12 @@
   font-weight: 700;
 }
 
-.us-room__controls {
+.treehouse-room__controls {
   display: flex;
   gap: 4px;
 }
 
-.us-room__controls span {
+.treehouse-room__controls span {
   display: block;
   width: 18px;
   height: 18px;
@@ -89,7 +89,7 @@
   border-color: #fff #404040 #404040 #fff;
 }
 
-.us-room__status {
+.treehouse-room__status {
   min-height: 34px;
   margin: 8px;
   padding: 8px 10px;
@@ -99,20 +99,20 @@
   font-size: 0.9rem;
 }
 
-.us-room__status.is-error {
+.treehouse-room__status.is-error {
   color: #5a0000;
   background: #ffe7e7;
 }
 
-.us-room__tabs {
+.treehouse-room__tabs {
   display: flex;
   flex-wrap: wrap;
   gap: 2px;
   padding: 0 8px;
 }
 
-.us-room__tab,
-.us-room button {
+.treehouse-room__tab,
+.treehouse-room button {
   min-height: 30px;
   padding: 5px 12px;
   color: #111;
@@ -125,23 +125,23 @@
   cursor: pointer;
 }
 
-.us-room__tab.is-active {
+.treehouse-room__tab.is-active {
   position: relative;
   top: 2px;
   background: #e5e5e5;
   border-bottom-color: #e5e5e5;
 }
 
-.us-room button:active {
+.treehouse-room button:active {
   border-color: #404040 #fff #fff #404040;
 }
 
-.us-room button:disabled {
+.treehouse-room button:disabled {
   color: #707070;
   cursor: not-allowed;
 }
 
-.us-room__panels {
+.treehouse-room__panels {
   margin: 0 8px 8px;
   padding: 12px;
   background: #e5e5e5;
@@ -149,26 +149,26 @@
   border-color: #fff #808080 #808080 #fff;
 }
 
-.us-room__panel {
+.treehouse-room__panel {
   display: none;
 }
 
-.us-room__panel.is-active {
+.treehouse-room__panel.is-active {
   display: block;
 }
 
-.us-room__composer {
+.treehouse-room__composer {
   display: grid;
   gap: 9px;
   margin: 0 0 14px;
 }
 
-.us-room__composer label {
+.treehouse-room__composer label {
   font-weight: 700;
 }
 
-.us-room textarea,
-.us-room input[type="file"] {
+.treehouse-room textarea,
+.treehouse-room input[type="file"] {
   width: 100%;
   color: #111;
   background: #fff;
@@ -177,18 +177,18 @@
   font: 0.95rem/1.45 "Courier New", Courier, monospace;
 }
 
-.us-room textarea {
+.treehouse-room textarea {
   resize: vertical;
   min-height: 92px;
   padding: 9px;
 }
 
-.us-room input[type="file"] {
+.treehouse-room input[type="file"] {
   min-height: 34px;
   padding: 5px;
 }
 
-.us-room__form-row {
+.treehouse-room__form-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -197,19 +197,19 @@
   font-size: 0.85rem;
 }
 
-.us-room__feed {
+.treehouse-room__feed {
   display: grid;
   gap: 8px;
 }
 
-.us-room__shout,
-.us-room__post-item {
+.treehouse-room__shout,
+.treehouse-room__post-item {
   padding: 10px;
   background: #fff;
   border: 2px inset #c0c0c0;
 }
 
-.us-room__entry-head {
+.treehouse-room__entry-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -219,25 +219,25 @@
   font-size: 0.8rem;
 }
 
-.us-room__author {
+.treehouse-room__author {
   color: #000080;
   font-weight: 700;
   overflow-wrap: anywhere;
 }
 
-.us-room__entry-actions {
+.treehouse-room__entry-actions {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.us-room__delete {
+.treehouse-room__delete {
   min-height: 24px !important;
   padding: 2px 8px !important;
   font-size: 0.8rem !important;
 }
 
-.us-room__shout-image {
+.treehouse-room__shout-image {
   display: block;
   max-width: 100%;
   height: auto;
@@ -245,51 +245,51 @@
   border: 2px solid #c0c0c0;
 }
 
-.us-room__shout-body {
+.treehouse-room__shout-body {
   margin: 0;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 
-.us-room__posts-layout {
+.treehouse-room__posts-layout {
   display: grid;
   grid-template-columns: minmax(230px, 320px) minmax(0, 1fr);
   gap: 12px;
   min-height: 460px;
 }
 
-.us-room__post-list {
+.treehouse-room__post-list {
   display: grid;
   align-content: start;
   gap: 8px;
 }
 
-.us-room__post-item {
+.treehouse-room__post-item {
   display: block;
   width: 100%;
   min-height: 0;
   text-align: left;
 }
 
-.us-room__post-item.is-active {
+.treehouse-room__post-item.is-active {
   outline: 2px solid #000080;
 }
 
-.us-room__post-title {
+.treehouse-room__post-title {
   margin: 0 0 5px;
   color: #000080;
   font-size: 1rem;
   line-height: 1.25;
 }
 
-.us-room__post-summary {
+.treehouse-room__post-summary {
   margin: 0;
   color: #333;
   font-size: 0.85rem;
   line-height: 1.4;
 }
 
-.us-room__post-reader {
+.treehouse-room__post-reader {
   min-width: 0;
   padding: 14px;
   background: #fff;
@@ -297,48 +297,48 @@
   overflow-wrap: anywhere;
 }
 
-.us-room__post-reader h2 {
+.treehouse-room__post-reader h2 {
   margin-top: 0;
   color: #000080;
   font-size: 1.45rem;
   letter-spacing: 0;
 }
 
-.us-room__post-meta {
+.treehouse-room__post-meta {
   margin: -4px 0 14px;
   color: #555;
   font-size: 0.85rem;
 }
 
-.us-room__post-body {
+.treehouse-room__post-body {
   color: #111;
   line-height: 1.65;
 }
 
-.us-room__post-body h1,
-.us-room__post-body h2,
-.us-room__post-body h3 {
+.treehouse-room__post-body h1,
+.treehouse-room__post-body h2,
+.treehouse-room__post-body h3 {
   color: #000080;
   letter-spacing: 0;
 }
 
-.us-room__post-body pre {
+.treehouse-room__post-body pre {
   padding: 10px;
   overflow-x: auto;
   color: #f7f7f7;
   background: #111;
 }
 
-.us-room__post-body code {
+.treehouse-room__post-body code {
   font-family: "Courier New", Courier, monospace;
 }
 
-.us-room__post-body a {
+.treehouse-room__post-body a {
   color: #0000ee;
   text-decoration: underline;
 }
 
-.us-room__empty {
+.treehouse-room__empty {
   margin: 0;
   padding: 12px;
   color: #333;
@@ -374,40 +374,40 @@
 }
 
 @media (max-width: 760px) {
-  .us-room__masthead {
+  .treehouse-room__masthead {
     display: block;
   }
 
-  .us-room__identity {
+  .treehouse-room__identity {
     margin-top: 12px;
   }
 
-  .us-room__posts-layout {
+  .treehouse-room__posts-layout {
     grid-template-columns: 1fr;
     min-height: 0;
   }
 }
 
 @media (max-width: 520px) {
-  .us-room {
+  .treehouse-room {
     margin-bottom: 24px;
   }
 
-  .us-room__masthead {
+  .treehouse-room__masthead {
     padding: 14px;
   }
 
-  .us-room__masthead h1 {
+  .treehouse-room__masthead h1 {
     font-size: 1.55rem;
   }
 
-  .us-room__form-row,
-  .us-room__entry-head {
+  .treehouse-room__form-row,
+  .treehouse-room__entry-head {
     display: block;
   }
 
-  .us-room__form-row button,
-  .us-room__entry-actions {
+  .treehouse-room__form-row button,
+  .treehouse-room__entry-actions {
     margin-top: 8px;
   }
 }
