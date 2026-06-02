@@ -1,4 +1,4 @@
-baseURL = 'https://ostensibleparadox-github-io.pages.dev/'
+baseURL = 'https://ostensible-paradox.pages.dev/'
 title = 'My Hugo Project'
 theme = 'PaperMod'
 timezone = 'UTC'

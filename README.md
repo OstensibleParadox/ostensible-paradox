@@ -62,7 +62,7 @@ hugo --minify                 # production build
 npx wrangler pages dev public # full-stack local dev with Pages Functions + D1
 ```
 
-Site: <https://ostensibleparadox-github-io.pages.dev/>
+Site: <https://ostensible-paradox.pages.dev/>
 
 ## Usage
 
