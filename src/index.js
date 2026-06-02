@@ -433,7 +433,18 @@ async function requireAccessUser(request, env) {
     throw httpError(503, "Cloudflare Access team domain or audience is not configured.");
   }
 
-  const token = request.headers.get("cf-access-jwt-assertion");
+  let token = request.headers.get("cf-access-jwt-assertion");
+  if (!token) {
+    const cookieHeader = request.headers.get("Cookie") || "";
+    const cookies = cookieHeader.split(";");
+    for (const cookie of cookies) {
+      const parts = cookie.trim().split("=");
+      if (parts[0] === "CF_Authorization") {
+        token = parts.slice(1).join("=");
+        break;
+      }
+    }
+  }
   if (!token) throw httpError(403, "Missing Cloudflare Access JWT.");
 
   const payload = await verifyAccessJwt(token, teamDomain, audience);
