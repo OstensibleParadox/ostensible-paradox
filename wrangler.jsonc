@@ -6,7 +6,7 @@
   "vars": {
     "PRIVATE_POST_PASSWORD": "admin",
     "ACCESS_TEAM_DOMAIN": "https://ostensibleparadox.cloudflareaccess.com",
-    "ACCESS_AUD": "bb15661cba72af69bd446c32ce2f8ef220981e5e019fad427e5c1b853936081b",
+    "ACCESS_AUD": "a15d077b5e6c3deae9657a1326e2cbe94d841466be4169f870c3034fd42eb90c",
     "ROOM_OWNER_EMAILS": "",
     "DEV_ROOM_EMAIL": ""
   },
