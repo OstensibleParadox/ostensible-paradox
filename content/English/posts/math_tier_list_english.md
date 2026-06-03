@@ -1,7 +1,7 @@
 +++
 title = "College Math Difficulty Tier List: From NPC to Eldritch Horror 💀"
 date = 2026-06-03T10:30:00+08:00
-draft = true
+draft = false
 tags = ["Math Memes", "College Life", "Topology", "Probability"]
 categories = ["Tier List"]
 +++
@@ -11,7 +11,7 @@ categories = ["Tier List"]
 > **Undergrad trauma edition.**
 > Grad-level probability not included because that is no longer a course, that is a lifestyle disease.
 
-![Ghibli Math TV Kitten](/Users/ostensible_paradox/.gemini/antigravity/brain/0699b045-ff09-4181-be88-3f768bbf5a3a/ghibli_math_tv_kitten_1780459303716.png)
+![Ghibli Math TV Kitten](/images/math_tier_list/ghibli_math_tv_kitten.png)
 
 ---
 
