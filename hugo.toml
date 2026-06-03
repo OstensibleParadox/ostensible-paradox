@@ -1,5 +1,5 @@
 baseURL = 'https://ostensible-paradox.pages.dev/'
-title = 'My Hugo Project'
+title = 'Utopiosphere'
 theme = 'PaperMod'
 timezone = 'UTC'
 
@@ -62,6 +62,7 @@ defaultContentLanguageInSubdir = true
   env = "production"
   mainSections = ["posts"]
   defaultTheme = "auto"
+  math = true
   ShowThemeToggleButton = true
   DateFormat = "Monday, 15:04, 2006-01-02"
   ShowReadingTime = true

@@ -398,3 +398,149 @@ code {
     color: #e06b6e;
     background: #3a1a1a;
 }
+
+/* ==========================================================================
+   Festive Spring Festival Couplet Redesign
+   ========================================================================== */
+
+/* Header (横批 background plate) */
+.header {
+    background: linear-gradient(90deg, #a71624 0%, #c21f30 50%, #a71624 100%) !important;
+    border-bottom: 4px solid #ffd700 !important;
+    border-top: 4px solid #ffd700 !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    position: relative;
+    overflow: visible !important;
+}
+
+/* Watermark text in header representing 横批 */
+.header-banner-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Kaiti", "STKaiti", "KaiTi_GB2312", serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: rgba(255, 215, 0, 0.9) !important;
+    letter-spacing: 1.2rem;
+    text-indent: 1.2rem; /* Centers the letters due to letter-spacing */
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 1;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+/* Ensure other header elements sit above the watermark and are styled gold/white */
+.header-nav {
+    position: relative;
+    z-index: 2;
+}
+
+.logo a {
+    color: #ffd700 !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.logo a:hover {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+.menu a {
+    color: #ffd700 !important;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.menu a:hover {
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+.menu .active {
+    color: #ffffff !important;
+    text-decoration-color: #ffd700 !important;
+}
+
+.theme-toggle {
+    color: #ffd700 !important;
+}
+
+.theme-toggle:hover {
+    color: #ffffff !important;
+}
+
+.nav-sep {
+    color: #ffd700 !important;
+}
+
+.lang-menu a {
+    color: #ffd700 !important;
+}
+
+.lang-menu a:hover {
+    color: #ffffff !important;
+}
+
+/* Floating Side Couplets */
+.couplets-wrapper {
+    position: fixed;
+    top: 120px; /* Start below the header */
+    left: 50%;
+    transform: translateX(-50%);
+    width: var(--main-width);
+    height: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.couplets-wrapper .couplet-side {
+    position: absolute;
+    top: 0;
+    pointer-events: auto;
+    background: linear-gradient(180deg, #c21f30 0%, #a71624 100%);
+    color: #ffd700;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    padding: 25px 12px;
+    border: 3px solid #ffd700;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: bold;
+    letter-spacing: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    font-family: "Kaiti", "STKaiti", "KaiTi_GB2312", serif;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.couplets-wrapper .couplet-side:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(255, 215, 0, 0.2);
+}
+
+.couplets-wrapper .couplet-left {
+    right: calc(100% + 40px); /* Position on the left of main content */
+}
+
+.couplets-wrapper .couplet-right {
+    left: calc(100% + 40px); /* Position on the right of main content */
+}
+
+/* Responsiveness */
+@media (max-width: 1200px) {
+    /* Hide side couplets if screen is too narrow to prevent overlap */
+    .couplets-wrapper {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Hide header watermark on mobile to avoid layout crowding */
+    .header-banner-text {
+        display: none;
+    }
+}
+
