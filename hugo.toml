@@ -246,3 +246,9 @@ defaultContentLanguageInSubdir = true
       name = "About"
       url = "/about/"
       weight = 30
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+

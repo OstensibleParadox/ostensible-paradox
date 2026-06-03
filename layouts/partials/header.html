@@ -1,5 +1,7 @@
-<header class="header">
-    <div class="header-banner-text">德布鲁因熵流同天</div>
+<header class="header{{ if eq .Lang "zh" }} festive-header{{ end }}">
+    {{- if eq .Lang "zh" -}}
+    <div class="header-banner-text">德布鲁因熵流通天</div>
+    {{- end -}}
     <nav class="header-nav">
         <div class="logo">
             {{- $label_text := (site.Params.label.text | default site.Title) }}
@@ -8,81 +10,82 @@
                 {{- if site.Params.label.icon }}
                 {{- $img := resources.Get site.Params.label.icon }}
                 {{- if $img }}
-                    {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
-                    {{- if hugo.IsExtended -}}
-                        {{- $processableFormats = $processableFormats | append "webp" -}}
-                    {{- end -}}
-                    {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
-                    {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
-                        {{- if site.Params.label.iconHeight }}
-                            {{- $img = $img.Resize (printf "x%d" site.Params.label.iconHeight) }}
-                        {{ else }}
-                            {{- $img = $img.Resize "x30" }}
-                        {{- end }}
-                    {{- end }}
-                    <img src="{{ $img.Permalink }}" alt="" aria-label="logo"
-                        height="{{- site.Params.label.iconHeight | default "30" -}}">
+                {{- $processableFormats := (slice "jpg" "jpeg" "png" "tif" "bmp" "gif") -}}
+                {{- if hugo.IsExtended -}}
+                {{- $processableFormats = $processableFormats | append "webp" -}}
+                {{- end -}}
+                {{- $prod := (hugo.IsProduction | or (eq site.Params.env "production")) }}
+                {{- if and (in $processableFormats $img.MediaType.SubType) (eq $prod true)}}
+                {{- if site.Params.label.iconHeight }}
+                {{- $img = $img.Resize (printf "x%d" site.Params.label.iconHeight) }}
+                {{ else }}
+                {{- $img = $img.Resize "x30" }}
+                {{- end }}
+                {{- end }}
+                <img src="{{ $img.Permalink }}" alt="" aria-label="logo"
+                    height="{{- site.Params.label.iconHeight | default " 30" -}}">
                 {{- else }}
                 <img src="{{- site.Params.label.icon | absURL -}}" alt="" aria-label="logo"
-                    height="{{- site.Params.label.iconHeight | default "30" -}}">
+                    height="{{- site.Params.label.iconHeight | default " 30" -}}">
                 {{- end -}}
-                {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}
-                    {{ site.Params.label.iconSVG | safeHTML }}
-                {{- end -}}
-                {{- $label_text -}}
-            </a>
-            {{- end }}
+                {{- else if hasPrefix site.Params.label.iconSVG "<svg" }} {{ site.Params.label.iconSVG | safeHTML }} {{-
+                    end -}} {{- $label_text -}} </a>
+                    {{- end }}
 
-            {{- $lsenabled := (or (not site.Params.disableThemeToggle) (and (not site.Params.disableLangToggle) (hugo.IsMultilingual))) }}
-            {{- if $lsenabled }}
-            <div class="logo-switches">
-                {{- if (not site.Params.disableThemeToggle) }}
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-                {{- end }}
+                    {{- $lsenabled := (or (not site.Params.disableThemeToggle) (and (not site.Params.disableLangToggle)
+                    (hugo.IsMultilingual))) }}
+                    {{- if $lsenabled }}
+                    <div class="logo-switches">
+                        {{- if (not site.Params.disableThemeToggle) }}
+                        <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)"
+                            aria-label="Toggle theme">
+                            <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                            <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                        </button>
+                        {{- end }}
 
-                {{- if (not site.Params.disableLangToggle) }}
-                    {{- $lang := .Lang}}
-                    {{- $separator := or $label_text (not site.Params.disableThemeToggle)}}
-                    {{- if $separator }}<span class="nav-sep">|</span>{{ end }}
-                    <ul class="lang-menu">
-                        {{- range site.Languages -}}
-                        {{- if ne $lang .Lang }}
-                        {{- $targetURL := printf "/%s%s" .Lang (strings.TrimPrefix (printf "/%s" $lang) $.RelPermalink) }}
-                        <li>
-                            <a href="{{- $targetURL -}}" title="{{ .Params.languageAltTitle | default (.LanguageName | emojify) | default (.Lang | title) }}"
-                                aria-label="{{ .LanguageName | default (.Lang | title) }}">
-                                {{- if (and site.Params.displayFullLangName .LanguageName) }}
-                                {{- .LanguageName | emojify -}}
-                                {{- else }}
-                                {{- .Lang | title -}}
-                                {{- end -}}
-                            </a>
-                        </li>
-                        {{- end -}}
-                        {{- end}}
-                    </ul>
-                {{- end }}
-            </div>
-            {{- end }}
+                        {{- if (not site.Params.disableLangToggle) }}
+                        {{- $lang := .Lang}}
+                        {{- $separator := or $label_text (not site.Params.disableThemeToggle)}}
+                        {{- if $separator }}<span class="nav-sep">|</span>{{ end }}
+                        <ul class="lang-menu">
+                            {{- range site.Languages -}}
+                            {{- if ne $lang .Lang }}
+                            {{- $targetURL := printf "/%s%s" .Lang (strings.TrimPrefix (printf "/%s" $lang)
+                            $.RelPermalink) }}
+                            <li>
+                                <a href="{{- $targetURL -}}"
+                                    title="{{ .Params.languageAltTitle | default (.LanguageName | emojify) | default (.Lang | title) }}"
+                                    aria-label="{{ .LanguageName | default (.Lang | title) }}">
+                                    {{- if (and site.Params.displayFullLangName .LanguageName) }}
+                                    {{- .LanguageName | emojify -}}
+                                    {{- else }}
+                                    {{- .Lang | title -}}
+                                    {{- end -}}
+                                </a>
+                            </li>
+                            {{- end -}}
+                            {{- end}}
+                        </ul>
+                        {{- end }}
+                    </div>
+                    {{- end }}
         </div>
         {{- $currentPage := . }}
         <ul id="menu" class="menu">
@@ -91,8 +94,9 @@
             {{- $page_url:= $currentPage.Permalink | absLangURL }}
             {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
             <li {{- if .HasChildren }} class="menu-item-dropdown" {{- end }}>
-                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
-                {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
+                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)"
+                    | safeHTMLAttr) ("" | safeHTMLAttr ) }}" {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" |
+                    safeHTMLAttr ) }}>
                     <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
                         {{- .Pre }}
                         {{- .Name -}}
@@ -124,12 +128,11 @@
     </nav>
 </header>
 
-{{- if .IsHome -}}
+{{- if and .IsHome (eq .Lang "zh") -}}
 <div class="couplets-wrapper">
     <!-- 下联 (Left side couplet) -->
-    <div class="couplet-side couplet-left">在马尔可夫半群上吸出香农算子。</div>
+    <div class="couplet-side couplet-left">在马尔可夫半群上吸出香农算子</div>
     <!-- 上联 (Right side couplet) -->
-    <div class="couplet-side couplet-right">在瓦瑟斯坦流形上测出熵产生。</div>
+    <div class="couplet-side couplet-right">在瓦瑟斯坦流形上测出熵产生</div>
 </div>
 {{- end -}}
-
