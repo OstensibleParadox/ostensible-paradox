@@ -486,29 +486,30 @@ code {
 /* Floating Side Couplets */
 .couplets-wrapper {
     position: fixed;
-    top: 120px; /* Start below the header */
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: var(--main-width);
-    height: 0;
+    height: 100vh;
     pointer-events: none;
     z-index: 100;
 }
 
 .couplets-wrapper .couplet-side {
     position: absolute;
-    top: 0;
+    top: 15vh;
     pointer-events: auto;
     background: linear-gradient(180deg, #c21f30 0%, #a71624 100%);
     color: #ffd700;
     writing-mode: vertical-rl;
     text-orientation: upright;
-    padding: 25px 12px;
+    padding: 36px 16px;
     border: 3px solid #ffd700;
     border-radius: 4px;
-    font-size: 1.4rem;
+    font-size: 1.85rem;
     font-weight: bold;
-    letter-spacing: 0.5rem;
+    letter-spacing: 0.6rem;
+    line-height: 1;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     font-family: "Kaiti", "STKaiti", "KaiTi_GB2312", serif;
