@@ -26,6 +26,7 @@ $$ \boxed{\text{NPC with a graphing calculator}} $$
 ---
 
 ## 📊 2. Intro Statistics
+![Intro Stats Kitty](/images/math_tier_list/Kitten_tapping_calculator_on_TV_202606032210.jpeg)
 *Mean, variance, normal distribution, confidence intervals, p-values.*
 
 Mostly button-pressing, formula-matching, and pretending you know what a p-value means.
@@ -36,6 +37,7 @@ $$ \boxed{\text{cooked, but microwave cooked}} $$
 ---
 
 ## 📐 3. Linear Algebra
+![Linear Algebra Kitty](/images/math_tier_list/Kitten_staring_at_retro_television_202606032212.jpeg)
 *Matrices, determinants, eigenvalues, diagonalization.*
 
 At first it looks like arithmetic with rectangles. Then one day someone says “vector space” and the floor quietly disappears.
@@ -46,7 +48,7 @@ $$ \boxed{\text{NPC until it suddenly isn’t}} $$
 ---
 
 ## 🔄 4. Calculus II
-![Calculus II Avalanche](/images/math_tier_list/calc2_kitty.jpeg)
+![Calculus II Avalanche](/images/math_tier_list/Kitten_buried_under_paper_avalanche_202606032216.jpeg)
 *Integration techniques, series, polar coordinates.*
 
 This is where many pre-meds meet the reaper. Not because it is the deepest course, but because it is a bag of tricks wearing a trench coat.
@@ -67,7 +69,7 @@ $$ \boxed{\text{cooked in 3D}} $$
 ---
 
 ## 🧩 6. Discrete Math
-![Discrete Math Yarn](/images/math_tier_list/discrete_math_kitty.jpeg)
+![Discrete Math Yarn](/images/math_tier_list/Kitten_tangled_in_yarn_watching_202606032220.jpeg)
 *Logic, sets, induction, graphs, combinatorics.*
 
 This is where computer science students discover that “obvious” is not a proof.
@@ -78,6 +80,7 @@ $$ \boxed{\text{proof tutorial hell}} $$
 ---
 
 ## ⚙️ 7. Differential Equations
+![Differential Equations Kitty](/images/math_tier_list/Kitten_watching_retro_television_202606032220.jpeg)
 *Solve this equation. Now solve this system. Now solve this thing that models a spring, a circuit, a plague, or your GPA.*
 
 > **Bonus note:**  
@@ -90,6 +93,7 @@ $$ \boxed{\text{engineer boss fight}} $$
 ---
 
 ## ⚖️ 8. Real Analysis
+![Real Analysis Kitty](/images/math_tier_list/Tired_kitten_watching_TV_202606032218.jpeg)
 *Calculus, but the instructor removes all vibes and demands legal documentation for every sentence.*
 
 You thought limits were intuitive. Analysis says: prove it.
@@ -100,6 +104,7 @@ $$ \boxed{\text{canon event}} $$
 ---
 
 ## 🌀 9. Abstract Algebra
+![Abstract Algebra Kitty](/images/math_tier_list/abstract.png)
 *Groups, rings, fields, modules.*
 
 No numbers. No graphs. No mercy. Just structure staring back at you.
@@ -110,7 +115,7 @@ $$ \boxed{\text{major character development}} $$
 ---
 
 ## 🍩 10. Topology
-![Topology Illusion](/images/math_tier_list/topology_kitty.jpeg)
+![Topology Illusion](/images/math_tier_list/Kitten_staring_at_morphing_TV_202606032227.jpeg)
 *Open sets, compactness, connectedness, quotient spaces.*
 
 The course where a coffee mug and a donut become relatives, and somehow that is your problem.
@@ -130,7 +135,7 @@ $$ \boxed{\text{eldritch DLC}} $$
 ---
 
 ## ☠️ 12. Measure-Theoretic Probability / Stochastic Analysis
-![Stochastic Cosmic TV](/images/math_tier_list/stochastic_kitty.jpg)
+![Stochastic Cosmic TV](/images/math_tier_list/Traumatized_kitten_inside_TV_202606032230.jpeg)
 *This is not “probability and statistics.” This is probability after it joined a monastery, studied analysis for ten years, and came back speaking in filtrations.*
 
 **Intro probability:**
