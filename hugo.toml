@@ -3,7 +3,7 @@ title = 'My Hugo Project'
 theme = 'PaperMod'
 timezone = 'UTC'
 
-defaultContentLanguage = 'zh'
+defaultContentLanguage = 'en'
 defaultContentLanguageInSubdir = true
 
 [outputs]
