@@ -25,6 +25,16 @@ defaultContentLanguageInSubdir = true
     lang = 'en'
 
   [[module.mounts]]
+    source = 'content/nursery-maths-rhymes'
+    target = 'content/nursery-maths-rhymes'
+    lang = 'zh'
+
+  [[module.mounts]]
+    source = 'content/nursery-maths-rhymes'
+    target = 'content/nursery-maths-rhymes'
+    lang = 'en'
+
+  [[module.mounts]]
     source = 'content/Chinese'
     target = 'content'
     lang = 'zh'
@@ -181,6 +191,12 @@ defaultContentLanguageInSubdir = true
       weight = 25
 
     [[languages.zh.menu.main]]
+      identifier = "nursery-maths"
+      name = "Nursery Maths Rhymes"
+      url = "/nursery-maths-rhymes/"
+      weight = 26
+
+    [[languages.zh.menu.main]]
       identifier = "about"
       name = "关于"
       url = "/about/"
@@ -238,6 +254,12 @@ defaultContentLanguageInSubdir = true
       name = "Lucia's Treehouse"
       url = "/treehouse/"
       weight = 25
+
+    [[languages.en.menu.main]]
+      identifier = "nursery-maths"
+      name = "Nursery Maths Rhymes"
+      url = "/nursery-maths-rhymes/"
+      weight = 26
 
     [[languages.en.menu.main]]
       identifier = "about"
