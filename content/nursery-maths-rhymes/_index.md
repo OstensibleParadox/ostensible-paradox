@@ -1,6 +1,6 @@
 +++
 title = "Nursery Maths Rhymes"
-description = 'Maths fairy tales and kittens.'
+description = 'Ever drifting down the stream— Lingering in the golden gleam— Life, what is it but a dream?'
 outputs = ['HTML']
 searchHidden = true
 hiddenInRss = true
@@ -31,4 +31,6 @@ disable = true
 
 +++
 
-Welcome to Nursery Maths Rhymes.
+*Ever drifting down the stream—*
+*Lingering in the golden gleam—*
+*Life, what is it but a dream?*
