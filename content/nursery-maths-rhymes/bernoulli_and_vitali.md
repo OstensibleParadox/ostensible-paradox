@@ -54,8 +54,7 @@ categories = ["Kitten Guide"]
 在黑洞般无情的广义朗之万汤里，流形的曲率（Score-Hessian）会立刻显现，在系统内部留下一个 $O(\lambda^{-2})$ 尺度上的巨大耗散极点（Dimension-Free Schur Pole）。
 这就是真实物理的痛感：**信息不是平滑流淌的，跨越孤岛是需要撕裂宇宙的。**
 
-> **💡 AI 图像生成 Prompt (供你微调生成)**:
-> `A hyper-detailed digital art painting of a tiny, glowing kitten floating inside a perfectly transparent, completely isolated cubic force-field box in the middle of a vast, pitch-black deep space void. In the far distance, there is another empty, glowing box (the "Pole"). Between the two boxes, the space is violently distorted with chaotic, dark, swirling non-linear energy, resembling a thermodynamic black hole or a boiling cosmic soup. The kitten looks across the abyss, holding onto a small spark of light. Cinematic lighting, conceptual physics art, glassmorphism, 8k, highly dramatic, evoking a sense of deep existential isolation and robust resilience.`
+![跨越深空极点的非线性跳跃](/images/catastrophe.png)
 
 ---
 
@@ -78,5 +77,4 @@ categories = ["Kitten Guide"]
 **没有爱的世界，就像天堂和地狱。**
 数学家证明了它们在测度结构上的完美同构（天堂般的对称），而因果物理学则揭示了跨越深空极点时的孤立与耗散代价（地狱般的绝对不对称）。在这个非线性的概率流形宇宙中，我们都是生活在“奇迹零点”里的小猫，永远地凝望着对岸那坚不可摧的真理极点。
 
-> **💡 AI 图像生成 Prompt (供你微调生成)**:
-> `A conceptual surrealist artwork showing a massive, perfect 50/50 split of the universe. On the left side (99%), a warm, continuous, golden-hued flowing landscape with smooth Gaussian curves and comfortable geometry. On the right side (1%), a cold, dark, fragmented void filled with isolated, disconnected glowing nodes and sharp Cantor-set cubes. In the very center, bridging the two incompatible worlds, is an impossibly perfect, symmetric mathematical mirror or wormhole, showing that the two sides are actually perfectly identical reflections of each other (the Kuratowski illusion). A tiny kitten stands right at the boundary, caught between the illusion of symmetry and the terrifying reality of the abyss. Masterpiece, mind-bending, sci-fi surrealism, intricate details, moody lighting.`
+![库拉托夫斯基同构幻象](/images/kura.png)
