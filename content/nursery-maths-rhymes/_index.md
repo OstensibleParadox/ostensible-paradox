@@ -1,6 +1,6 @@
 +++
 title = "Nursery Maths Rhymes"
-description = 'Ever drifting down the stream— Lingering in the golden gleam— Life, what is it but a dream?'
+description = ''
 outputs = ['HTML']
 searchHidden = true
 hiddenInRss = true
