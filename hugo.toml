@@ -162,26 +162,26 @@ defaultContentLanguageInSubdir = true
 
     [[languages.zh.menu.main]]
       parent = "posts"
-      name = "学术论文"
-      url = "/categories/学术论文/"
+      name = "Humanities"
+      url = "/categories/humanities/"
       weight = 1
 
     [[languages.zh.menu.main]]
       parent = "posts"
-      name = "思路与探索"
-      url = "/categories/思路与探索/"
+      name = "Maths"
+      url = "/categories/maths/"
       weight = 2
 
     [[languages.zh.menu.main]]
       parent = "posts"
-      name = "个人日志"
-      url = "/categories/个人日志/"
+      name = "Engineering"
+      url = "/categories/engineering/"
       weight = 3
 
     [[languages.zh.menu.main]]
       parent = "posts"
-      name = "艺术创想"
-      url = "/categories/艺术创想/"
+      name = "Diary"
+      url = "/categories/diary/"
       weight = 4
 
     [[languages.zh.menu.main]]
@@ -227,26 +227,26 @@ defaultContentLanguageInSubdir = true
 
     [[languages.en.menu.main]]
       parent = "posts"
-      name = "Academic Papers"
-      url = "/categories/academic-papers/"
+      name = "Humanities"
+      url = "/categories/humanities/"
       weight = 1
 
     [[languages.en.menu.main]]
       parent = "posts"
-      name = "Explorative Thoughts"
-      url = "/categories/explorative-thoughts/"
+      name = "Maths"
+      url = "/categories/maths/"
       weight = 2
 
     [[languages.en.menu.main]]
       parent = "posts"
-      name = "My Daily Logs"
-      url = "/categories/my-daily-logs/"
+      name = "Engineering"
+      url = "/categories/engineering/"
       weight = 3
 
     [[languages.en.menu.main]]
       parent = "posts"
-      name = "Arts & Creative"
-      url = "/categories/arts-creative/"
+      name = "Diary"
+      url = "/categories/diary/"
       weight = 4
 
     [[languages.en.menu.main]]

@@ -3,7 +3,7 @@ title = "那些在纸箱里开会的测度论“哥哥们” 🐾"
 date = 2026-05-24T05:01:00+08:00
 draft = false
 tags = ["Measure Theory", "Borel", "Lebesgue", "Gauss", "Vitali Set"]
-categories = ["Kitten Guide"]
+categories = ['Maths']
 +++
 
 # 那些在纸箱里开会的测度论“哥哥们”

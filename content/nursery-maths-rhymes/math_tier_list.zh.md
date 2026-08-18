@@ -3,7 +3,7 @@ title = "大学数学难度从夯到拉排名"
 date = 2026-06-04T02:45:00+08:00
 draft = false
 tags = ["数学", "大学生活", "梗", "难度排名"]
-categories = ["闲聊"]
+categories = ['Diary']
 +++
 
 # 大学数学难度从夯到拉排名

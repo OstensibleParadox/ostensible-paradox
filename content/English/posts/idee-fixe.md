@@ -4,7 +4,7 @@ date = '2026-06-12T09:42:36-07:00'
 draft = false
 translationKey = 'idee-fixe'
 tags = ['Philosophy', 'Psychiatry', 'Time', 'Psychoanalysis']
-categories = ['Explorative Thoughts']
+categories = ['Humanities']
 +++
 
 On stalled time — there's actual intellectual substance here across a few traditions:

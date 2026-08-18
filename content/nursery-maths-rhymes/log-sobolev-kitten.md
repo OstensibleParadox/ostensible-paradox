@@ -3,7 +3,7 @@ title = "猫咪对不等式的理解 (LSI & Optimal Transport) 🐾"
 date = 2026-05-24T05:00:00+08:00
 draft = false
 tags = ["Log-Sobolev", "Optimal Transport", "Entropy"]
-categories = ["Kitten Guide"]
+categories = ['Maths']
 +++
 
 # 猫咪对不等式的理解 (A Kitten's Guide to Optimal Transport & LSI)

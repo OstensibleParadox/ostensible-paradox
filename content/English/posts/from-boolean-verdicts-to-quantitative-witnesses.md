@@ -2,7 +2,7 @@
 title = 'From Boolean Verdicts to Quantitative Witnesses: Why DAG Topology Needs a Trail Semantics'
 date = '2026-05-19T03:30:00+08:00'
 draft = false
-categories = ['Explorative Thoughts']
+categories = ['Engineering']
 tags = ['causal inference', 'qif', 'd-separation', 'bayes ball', 'trail semantics', 'information flow']
 +++
 

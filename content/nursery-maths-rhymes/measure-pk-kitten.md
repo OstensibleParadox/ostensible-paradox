@@ -3,7 +3,7 @@ title = "猫砂盆特征大PK与维塔利怪兽 🐾"
 date = 2026-05-24T05:02:00+08:00
 draft = false
 tags = ["Measure Theory", "Vitali Set", "Discrete Measure", "LSI"]
-categories = ["Kitten Guide"]
+categories = ['Maths']
 +++
 
 # 附加赛：哥哥们的“猫砂盆特征大PK”

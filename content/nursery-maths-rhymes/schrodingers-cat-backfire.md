@@ -3,7 +3,7 @@ title = "薛定谔的猫：本想砸场子，却成了超级代言人 🐾"
 date = 2026-06-16T16:00:00+08:00
 draft = false
 tags = ["Quantum Mechanics", "Schrodinger", "Copenhagen Interpretation", "Physics Fairy Tale"]
-categories = ["Kitten Guide"]
+categories = ['Maths']
 +++
 
 # 薛定谔的猫：本想砸场子，却成了超级代言人 🐾

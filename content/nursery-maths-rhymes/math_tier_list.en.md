@@ -3,7 +3,7 @@ title = "College Math Difficulty Tier List: From NPC to Eldritch Horror 💀"
 date = 2026-06-03T10:30:00+08:00
 draft = false
 tags = ["Math Memes", "College Life", "Topology", "Probability"]
-categories = ["Tier List"]
+categories = ['Diary']
 +++
 
 # College Math Difficulty Tier List: From NPC to Eldritch Horror 💀

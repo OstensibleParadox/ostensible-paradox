@@ -1,8 +1,9 @@
 +++
+translationKey = 'erbar-mass'
 title = 'Erbar-Maas Singular Causal Interventions'
 date = '2026-05-22T22:20:00+08:00'
 draft = false
-categories = ['Academic Papers']
+categories = ['Maths']
 tags = ['causal inference', 'markov chains', 'erbar-maas', 'wasserstein', 'singular perturbation']
 summary = 'An interactive laboratory demonstrating singular limits on Continuous-Time Markov Chains.'
 +++

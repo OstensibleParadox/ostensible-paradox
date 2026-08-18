@@ -4,7 +4,7 @@ date = '2026-06-12T09:42:36-07:00'
 draft = false
 translationKey = 'idee-fixe'
 tags = ['哲学', '精神病学', '时间', '精神分析']
-categories = ['思路与探索']
+categories = ['Humanities']
 +++
 
 关于停滞的时间——在几个学术传统中都有真正的思想内涵：

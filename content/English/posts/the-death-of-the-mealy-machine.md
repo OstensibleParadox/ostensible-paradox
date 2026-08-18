@@ -2,7 +2,7 @@
 title = 'Why mealy machine, Why?'
 date = '2026-05-21T03:20:06+08:00'
 draft = false
-categories = ['My Daily Logs']
+categories = ['Engineering']
 tags = ['mealy-machine', 'epistemology', 'causal-graphs', 'lean4']
 translationKey = 'death-of-the-mealy-machine'
 +++

@@ -3,7 +3,7 @@ title = "朗之万的温泉与宇宙记忆大锅：非平衡态热力学的黑�
 date = 2026-05-26T12:35:00+08:00
 draft = true
 tags = ["Thermodynamics", "Langevin Equation", "Memory Kernel", "Volterra"]
-categories = ["Kitten Guide"]
+categories = ['Maths']
 +++
 
 # 朗之万的温泉与宇宙记忆大锅：非平衡态热力学的黑童话 ♨️

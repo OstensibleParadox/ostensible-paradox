@@ -3,7 +3,7 @@ title = "薛定谔与玻尔的第二回合：布朗乖乖猫与莱维瞬移猫 �
 date = 2026-06-16T16:10:00+08:00
 draft = false
 tags = ["Stochastic Process", "Brownian Motion", "Levy Flight", "Bohr", "Schrodinger"]
-categories = ["Kitten Guide"]
+categories = ['Maths']
 +++
 
 # 薛定谔与玻尔的第二回合：布朗乖乖猫与莱维瞬移猫 🐾

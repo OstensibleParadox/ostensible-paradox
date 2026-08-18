@@ -3,7 +3,7 @@ date = '2026-05-15T10:00:00+08:00'
 draft = false
 title = '继电信道割集上界与退化容量证明的重构'
 translationKey = 'constructing-el-gamal-kim-proof-chain'
-categories = ['思路与探索']
+categories = ['Maths']
 disciplines = ['信息论', '编码理论']
 +++
 

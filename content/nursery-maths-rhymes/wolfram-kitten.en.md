@@ -4,7 +4,7 @@ date = '2026-06-05T02:25:48+08:00'
 draft = false
 translationKey = 'wolfram-kitten'
 tags = ['Kitten', 'Memory', 'Daily Life']
-categories = ['My Daily Logs']
+categories = ['Diary']
 +++
 
 ![A unique kitten staring angrily at WolframAlpha](/images/extraordinary-kitten/kitten_wolframalpha_1.png)

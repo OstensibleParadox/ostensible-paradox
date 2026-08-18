@@ -3,7 +3,7 @@ title = "秤坏掉的怪兽：维塔利非可测集的故事 🐾"
 date = 2026-05-24T05:04:00+08:00
 draft = false
 tags = ["Measure Theory", "Vitali Set", "Lebesgue", "Axiom of Choice"]
-categories = ["Kitten Guide"]
+categories = ['Maths']
 +++
 
 # 秤坏掉的怪兽：维塔利非可测集的故事 🐾

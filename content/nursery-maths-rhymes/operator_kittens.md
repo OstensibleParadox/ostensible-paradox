@@ -3,7 +3,7 @@ title = "算子小猫吸猫指南：泛函分析的硬核童话 🐾"
 date = 2026-05-26T12:20:00+08:00
 draft = true
 tags = ["Functional Analysis", "Operators", "Math Fairy Tale"]
-categories = ["Kitten Guide"]
+categories = ['Maths']
 +++
 
 # 算子小猫吸猫指南：泛函分析的硬核童话 🐾

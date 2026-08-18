@@ -1,8 +1,9 @@
 +++
+translationKey = 'erbar-mass'
 title = 'Erbar-Maas 奇异因果干预定理'
 date = '2026-05-22T22:20:00+08:00'
 draft = false
-categories = ['学术论文']
+categories = ['Maths']
 tags = ['因果推断', '马尔可夫链', 'Erbar-Maas', 'Wasserstein', '奇异摄动']
 summary = '展示连续时间马尔可夫链上奇异极限的交互式数学实验室。'
 +++

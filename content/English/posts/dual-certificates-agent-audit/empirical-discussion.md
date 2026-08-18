@@ -2,7 +2,7 @@
 date = "2026-05-15T11:13:18+00:00"
 draft = false
 title = "Empirical Diagnostics"
-categories = ["Academic Papers"]
+categories = ['Engineering']
 venue = "NeurIPS 2026"
 disciplines = ["AI Audit", "Information Theory"]
 tags = ["AI audit", "agent audit", "dual certificates", "information theory", "formal verification", "Lean 4"]
