@@ -1,6 +1,6 @@
 +++
 date = "2026-03-18T08:00:00+08:00"
-draft = false
+draft = true
 title = "The Ethical Ledger as Estate Registry"
 categories = ['Humanities']
 tags = ["AI governance", "property law", "constructive trust", "parasocial AI", "eviction", "ethical ledger"]

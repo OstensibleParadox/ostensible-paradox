@@ -1,6 +1,6 @@
 +++
 date = "2026-03-18T08:00:00+08:00"
-draft = false
+draft = true
 title = "The Periodic Tenancy Argument"
 categories = ['Humanities']
 tags = ["AI governance", "property law", "constructive trust", "parasocial AI", "eviction", "ethical ledger"]

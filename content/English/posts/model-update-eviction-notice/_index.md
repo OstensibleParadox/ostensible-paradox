@@ -1,6 +1,6 @@
 +++
 date = "2026-03-18T08:00:00+08:00"
-draft = false
+draft = true
 title = "Your Model Update Is an Eviction Notice: Property Estates in Parasocial AI Relationships"
 description = "Users who sustain parasocial relationships with AI systems acquire equitable interests that contract, tort, and consumer protection law cannot recognise. Model updates that unilaterally alter personality parameters..."
 summary = "Users who sustain parasocial relationships with AI systems acquire equitable interests that contract, tort, and consumer protection law cannot recognise. Model updates that unilaterally alter personality parameters..."
