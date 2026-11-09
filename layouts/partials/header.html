@@ -67,8 +67,14 @@
                         <ul class="lang-menu">
                             {{- range site.Languages -}}
                             {{- if ne $lang .Lang }}
-                            {{- $targetURL := printf "/%s%s" .Lang (strings.TrimPrefix (printf "/%s" $lang)
+                            {{- $targetLang := .Lang }}
+                            {{- $targetURL := printf "/%s%s" $targetLang (strings.TrimPrefix (printf "/%s" $lang)
                             $.RelPermalink) }}
+                            {{- range $.Translations -}}
+                            {{- if eq .Lang $targetLang }}
+                            {{- $targetURL = .RelPermalink -}}
+                            {{- end -}}
+                            {{- end -}}
                             <li>
                                 <a href="{{- $targetURL -}}"
                                     title="{{ .Params.languageAltTitle | default (.LanguageName | emojify) | default (.Lang | title) }}"

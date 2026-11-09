@@ -6,8 +6,6 @@ tags = ["Measure Theory", "Borel", "Bernoulli", "Kuratowski Isomorphism", "Causa
 categories = ['Maths']
 +++
 
-# 深空孤盒与库拉托夫斯基幻象：波莱尔与伯努利的极限拉扯 🐾
-
 如果你问以前的我，伯努利哥哥的离散颗粒空间为什么符合波莱尔纸箱的规矩？我可能会天真地告诉你：“因为在离散空间里，所有的子集都是开集，这是最轻松、最省心的波莱尔纸箱呀！”
 
 **错。大错特错。**

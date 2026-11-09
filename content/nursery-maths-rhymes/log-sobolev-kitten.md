@@ -6,10 +6,6 @@ tags = ["Log-Sobolev", "Optimal Transport", "Entropy"]
 categories = ['Maths']
 +++
 
-# 猫咪对不等式的理解 (A Kitten's Guide to Optimal Transport & LSI)
-
----
-
 ## 0. “真的很真空”（$\sigma$-代数）
 *每个猫咪都无法拒绝一个空纸箱。这不仅仅意味着箱子的盖子被打开、可以进行测量了，最关键的是它规定了“我们究竟在测些什么”。*
 

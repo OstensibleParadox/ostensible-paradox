@@ -6,8 +6,6 @@ tags = ["Measure Theory", "Vitali Set", "Lebesgue", "Axiom of Choice"]
 categories = ['Maths']
 +++
 
-# 秤坏掉的怪兽：维塔利非可测集的故事 🐾
-
 **维塔利怪兽 (Vitali Set)** 是测度论历史上一只极其著名的“幽灵怪兽”！它是数学家维塔利 (Giuseppe Vitali) 在 1905 年利用**选择公理 (Axiom of Choice)** 召唤出来的。
 
 它的可怕之处在于：**它是一堆在勒贝格哥哥的秤上，无论如何也称不出重量的沙子（非可测集）！**

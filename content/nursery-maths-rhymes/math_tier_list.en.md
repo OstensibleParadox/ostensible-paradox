@@ -2,11 +2,10 @@
 title = "College Math Difficulty Tier List: From NPC to Eldritch Horror 💀"
 date = 2026-06-03T10:30:00+08:00
 draft = false
+translationKey = "math-tier-list"
 tags = ["Math Memes", "College Life", "Topology", "Probability"]
 categories = ['Diary']
 +++
-
-# College Math Difficulty Tier List: From NPC to Eldritch Horror 💀
 
 > **Undergrad trauma edition.**
 > Grad-level probability not included because that is no longer a course, that is a lifestyle disease.

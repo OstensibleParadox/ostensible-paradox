@@ -2,11 +2,10 @@
 title = "大学数学难度从夯到拉排名"
 date = 2026-06-04T02:45:00+08:00
 draft = false
+translationKey = "math-tier-list"
 tags = ["数学", "大学生活", "梗", "难度排名"]
 categories = ['Diary']
 +++
-
-# 大学数学难度从夯到拉排名
 
 ## 1. 高等数学
 ![Calculus Avalanche](/images/math_tier_list/Kitten_buried_under_paper_avalanche_202606032216.jpeg)

@@ -6,8 +6,6 @@ tags = ["Functional Analysis", "Operators", "Math Fairy Tale"]
 categories = ['Maths']
 +++
 
-# 算子小猫吸猫指南：泛函分析的硬核童话 🐾
-
 如果你觉得无穷维希尔伯特空间（Hilbert Space）是一个冷冰冰的数学地狱，那你一定是没遇到这里的原住民——**算子小猫（Operator Kittens）**。
 
 在连续统的宇宙里，普通的数字只是猫粮，而算子，则是活生生的、有脾气的猫咪。今天，我们就来盘点一下这些把数学家折磨得死去活来，又让人欲罢不能的算子小猫们。
