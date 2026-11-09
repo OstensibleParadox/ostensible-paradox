@@ -81,3 +81,4 @@ Causal physics, however, reveals that when the kitten must leap across the void 
 ![The Kuratowski isomorphism illusion](/images/kura.png)
 
 In this nonlinear universe of probability manifolds, we are all kittens living inside a "miracle zero," gazing forever across the void at an indestructible pole of truth.
+

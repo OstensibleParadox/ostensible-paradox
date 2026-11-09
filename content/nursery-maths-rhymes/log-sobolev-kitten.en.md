@@ -65,3 +65,4 @@ categories = ['Maths']
 * **The local dissipation slope** (Fisher information $I$) governs our acceleration efficiency on every time slice.
 * **The instantaneous horizontal velocity field** (Wasserstein tangent) traces the path along which we run.
 * And the **Log-Sobolev Inequality** is the ultimate contract guaranteeing that at any height, the kitten will always find a steep enough slope to ride the slide all the way home.
+

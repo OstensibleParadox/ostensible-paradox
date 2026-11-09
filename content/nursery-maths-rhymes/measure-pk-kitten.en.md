@@ -60,3 +60,4 @@ Because there are so many Big Brothers and litter boxes at the convention, our k
 > - [👉 The Beauty of Granules: Big Brother Bernoulli's Discrete Box]({{< relref "bernoulli_and_vitali" >}})
 >
 > ![The Vitali non-measurable monster](/images/vitali_monster.png)
+

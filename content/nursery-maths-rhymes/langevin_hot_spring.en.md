@@ -51,3 +51,4 @@ So the next time you encounter the words `Generalized Langevin Equation` in a te
 
 ---
 **(Dedicated to all the Markovian kittens struggling heroically inside memory-kernel integrals.)**
+

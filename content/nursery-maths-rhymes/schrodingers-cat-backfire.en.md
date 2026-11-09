@@ -62,3 +62,4 @@ Schrödinger spent his life fighting Bohr's quantum jumps and superpositions, on
 He tried to use a kitten as the ultimate bomb to demolish his rival's theory, forgetting one fundamental law of nature: kittens have a mind of their own—and once they move into a box, they never follow their owner's script.
 
 So if you ever feel tempted to use a kitten as a counterexample in an academic debate, remember Big Brother Schrödinger's painful lesson: **never underestimate humanity's weakness for kittens and mystery boxes.**
+
