@@ -1,7 +1,8 @@
 +++
 title = "朗之万的温泉与宇宙记忆大锅：非平衡态热力学的黑童话 ♨️"
 date = 2026-05-26T12:35:00+08:00
-draft = true
+draft = false
+translationKey = "langevin_hot_spring"
 tags = ["Thermodynamics", "Langevin Equation", "Memory Kernel", "Volterra"]
 categories = ['Maths']
 +++
@@ -49,4 +50,4 @@ Volterra 汤勺无情地执行着它的积分宿命：$(Vf)(x) = \int_0^x f(t)dt
 所以，下次当你在非平衡态热力学的书上看到 `Generalized Langevin Equation` 这个词时，请记住：那不仅是一个随机微分方程，那是一口熬煮着因果、记忆与时间流逝的宇宙大锅。而每一只被抛入其中的系统小猫，都在用它的热力学耗散，偿还着整个宇宙的记忆之债。
 
 ---
-**（Draft 记录：谨以此篇献给那些在记忆核积分中苦苦挣扎的马尔可夫小猫们。）**
+**（谨以此篇献给那些在记忆核积分中苦苦挣扎的马尔可夫小猫们。）**

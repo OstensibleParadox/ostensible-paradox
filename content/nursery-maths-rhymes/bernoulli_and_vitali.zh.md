@@ -2,6 +2,7 @@
 title = "深空孤盒与库拉托夫斯基幻象：波莱尔与伯努利的极限拉扯 🐾"
 date = 2026-05-26T12:05:00+08:00
 draft = false
+translationKey = "bernoulli_and_vitali"
 tags = ["Measure Theory", "Borel", "Bernoulli", "Kuratowski Isomorphism", "Causal Intervention"]
 categories = ['Maths']
 +++

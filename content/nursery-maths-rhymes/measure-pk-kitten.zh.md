@@ -2,6 +2,7 @@
 title = "猫砂盆特征大PK与维塔利怪兽 🐾"
 date = 2026-05-24T05:02:00+08:00
 draft = false
+translationKey = "measure-pk-kitten"
 tags = ["Measure Theory", "Vitali Set", "Discrete Measure", "LSI"]
 categories = ['Maths']
 +++
@@ -55,7 +56,7 @@ categories = ['Maths']
 > **结论**：维塔利怪兽 $V$ 在勒贝格测度下根本没有可定义的实数重量！这就是**非可测集 (Non-measurable Set)**。所以，在连续盆地里称重必须要有波莱尔纸箱的层层保护，而不能用选择公理胡乱拼凑。
 > 
 > 想听维塔利怪兽被召唤的详细故事，以及伯努利哥哥如何用颗粒猫砂安全防漏？
-> - [👉 秤坏掉的怪兽：维塔利非可测集的故事]({{< relref "vitali-monster.md" >}})
-> - [👉 颗粒之美：伯努利哥哥的离散纸箱]({{< relref "bernoulli_and_vitali.md" >}})
+> - [👉 秤坏掉的怪兽：维塔利非可测集的故事]({{< relref "vitali-monster" >}})
+> - [👉 颗粒之美：伯努利哥哥的离散纸箱]({{< relref "bernoulli_and_vitali" >}})
 > 
 > ![维塔利非可测怪兽](/images/vitali_monster.png)

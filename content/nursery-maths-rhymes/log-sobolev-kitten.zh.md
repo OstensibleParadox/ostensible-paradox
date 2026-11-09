@@ -2,6 +2,7 @@
 title = "猫咪对不等式的理解 (LSI & Optimal Transport) 🐾"
 date = 2026-05-24T05:00:00+08:00
 draft = false
+translationKey = "log-sobolev-kitten"
 tags = ["Log-Sobolev", "Optimal Transport", "Entropy"]
 categories = ['Maths']
 +++
@@ -24,7 +25,7 @@ categories = ['Maths']
 
 > [!NOTE]
 > 🐾 想认识那些发明了测度、帮猫咪给空间称重的神奇“哥哥们”吗？还有大PK和可怕的维塔利怪兽？
-> 它们的有趣故事都在这篇独立文章里：[👉 那些在纸箱里开会的测度论“哥哥们”]({{< relref "measure-theory-kitten.md" >}})！
+> 它们的有趣故事都在这篇独立文章里：[👉 那些在纸箱里开会的测度论“哥哥们”]({{< relref "measure-theory-kitten" >}})！
 
 ### 二、 时间的测度 (logSobolevIndex)
 *如果我打开一罐猫罐头，气味要花多久飘满整个房间？*

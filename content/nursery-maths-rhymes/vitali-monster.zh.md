@@ -2,6 +2,7 @@
 title = "秤坏掉的怪兽：维塔利非可测集的故事 🐾"
 date = 2026-05-24T05:04:00+08:00
 draft = false
+translationKey = "vitali-monster"
 tags = ["Measure Theory", "Vitali Set", "Lebesgue", "Axiom of Choice"]
 categories = ['Maths']
 +++
@@ -59,6 +60,6 @@ categories = ['Maths']
 
 > [!TIP]
 > 🐾 想要看看如何用颗粒度免疫幽灵怪兽，或者去别的地方逛逛？
-> - [👉 颗粒之美：伯努利哥哥的离散纸箱]({{< relref "bernoulli_and_vitali.md" >}})
-> - [👉 那些在纸箱里开会的测度论“哥哥们”]({{< relref "measure-theory-kitten.md" >}})
-> - [👉 猫砂盆特征大PK与维塔利怪兽]({{< relref "measure-pk-kitten.md" >}})
+> - [👉 颗粒之美：伯努利哥哥的离散纸箱]({{< relref "bernoulli_and_vitali" >}})
+> - [👉 那些在纸箱里开会的测度论“哥哥们”]({{< relref "measure-theory-kitten" >}})
+> - [👉 猫砂盆特征大PK与维塔利怪兽]({{< relref "measure-pk-kitten" >}})

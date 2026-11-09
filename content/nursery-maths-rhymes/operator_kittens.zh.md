@@ -1,7 +1,8 @@
 +++
 title = "算子小猫吸猫指南：泛函分析的硬核童话 🐾"
 date = 2026-05-26T12:20:00+08:00
-draft = true
+draft = false
+translationKey = "operator_kittens"
 tags = ["Functional Analysis", "Operators", "Math Fairy Tale"]
 categories = ['Maths']
 +++
@@ -86,4 +87,4 @@ categories = ['Maths']
 
 ---
 
-**（Draft 版本 —— 未完待续... 谁说泛函分析没有感情？当你注视着这些算子小猫时，深空的极点也在注视着你。）**
+**（谁说泛函分析没有感情？当你注视着这些算子小猫时，深空的极点也在注视着你。）**

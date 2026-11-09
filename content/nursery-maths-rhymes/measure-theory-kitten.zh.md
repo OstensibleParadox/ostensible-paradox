@@ -2,6 +2,7 @@
 title = "那些在纸箱里开会的测度论“哥哥们” 🐾"
 date = 2026-05-24T05:01:00+08:00
 draft = false
+translationKey = "measure-theory-kitten"
 tags = ["Measure Theory", "Borel", "Lebesgue", "Gauss", "Vitali Set"]
 categories = ['Maths']
 +++
@@ -95,11 +96,11 @@ categories = ['Maths']
     *   **数学映射**：两点测度空间 $\Omega = \{0, 1\}$，概率为 $p$ 和 $1-p$。它是所有离散随机过程、格点物理和离散对数索伯列夫不等式的基石，由于完全没有连续边界，它是最安全、最听话的参考测度。
     *   ![伯努利哥哥的离散深空孤盒](/images/bernoulli_cube.jpg)
     *   **详细故事**：想深入了解伯努利哥哥的格子猫砂为何能免疫幽灵怪兽？
-        - [👉 颗粒之美：伯努利哥哥的离散纸箱]({{< relref "bernoulli_and_vitali.md" >}})
-        - [👉 秤坏掉的怪兽：维塔利非可测集的故事]({{< relref "vitali-monster.md" >}})
+        - [👉 颗粒之美：伯努利哥哥的离散纸箱]({{< relref "bernoulli_and_vitali" >}})
+        - [👉 秤坏掉的怪兽：维塔利非可测集的故事]({{< relref "vitali-monster" >}})
 
 ---
 
 > [!TIP]
 > 🐾 想看哪个猫砂盆的性能最强？我们把常用测度（猫砂）的物理与几何性质拉出来做个大PK，还有可怕的维塔利非可测怪兽的故事！
-> 它们的有趣故事都在这篇独立文章里：[👉 戳这里直达：猫砂盆特征大PK与维塔利怪兽]({{< relref "measure-pk-kitten.md" >}})！
+> 它们的有趣故事都在这篇独立文章里：[👉 戳这里直达：猫砂盆特征大PK与维塔利怪兽]({{< relref "measure-pk-kitten" >}})！
