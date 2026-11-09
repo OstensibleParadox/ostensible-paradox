@@ -57,7 +57,7 @@ categories = ['Maths']
 > **结论**：维塔利怪兽 $V$ 在勒贝格测度下根本没有可定义的实数重量！这就是**非可测集 (Non-measurable Set)**。所以，在连续盆地里称重必须要有波莱尔纸箱的层层保护，而不能用选择公理胡乱拼凑。
 > 
 > 想听维塔利怪兽被召唤的详细故事，以及伯努利哥哥如何用颗粒猫砂安全防漏？
-> - [👉 秤坏掉的怪兽：维塔利非可测集的故事](/posts/vitali-monster/)
-> - [👉 颗粒之美：伯努利哥哥的离散纸箱](/posts/discrete_monster/)
+> - [👉 秤坏掉的怪兽：维塔利非可测集的故事]({{< relref "vitali-monster.md" >}})
+> - [👉 颗粒之美：伯努利哥哥的离散纸箱]({{< relref "bernoulli_and_vitali.md" >}})
 > 
 > ![维塔利非可测怪兽](/images/vitali_monster.png)

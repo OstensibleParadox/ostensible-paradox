@@ -61,6 +61,6 @@ categories = ['Maths']
 
 > [!TIP]
 > 🐾 想要看看如何用颗粒度免疫幽灵怪兽，或者去别的地方逛逛？
-> - [👉 颗粒之美：伯努利哥哥的离散纸箱](/posts/discrete_monster/)
-> - [👉 那些在纸箱里开会的测度论“哥哥们”](/posts/measure-theory-kitten/)
-> - [👉 猫砂盆特征大PK与维塔利怪兽](/posts/measure-pk-kitten/)
+> - [👉 颗粒之美：伯努利哥哥的离散纸箱]({{< relref "bernoulli_and_vitali.md" >}})
+> - [👉 那些在纸箱里开会的测度论“哥哥们”]({{< relref "measure-theory-kitten.md" >}})
+> - [👉 猫砂盆特征大PK与维塔利怪兽]({{< relref "measure-pk-kitten.md" >}})
