@@ -254,3 +254,4 @@ Each cumulant term is expressed as a high-dimensional oscillatory or geometric i
    - Interestingly, the difficulty here is inverted between the two problems: the cutting algorithm is simpler in the wave kinetic case, whereas in the hard-sphere Boltzmann case it requires a delicate multi-stage surgery to handle overlapping recollisions and exclusion conditions.
 
 Combining the analytical integral bounds with the combinatorial cutting algorithm shows that the cumulants $E_H(t_m)$ remain inductively controlled across arbitrarily many time layers $m = 1, \dots, K$, completing the long-time derivation of both the wave kinetic equation and the Boltzmann equation.
+
